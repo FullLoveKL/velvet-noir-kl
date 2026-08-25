@@ -16,6 +16,10 @@ function currency(amount) {
   return `RM ${Number(amount).toLocaleString("en-MY")}`;
 }
 
+function discountCurrency(amount) {
+  return `RM ${Number(amount).toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>'"]/g, (character) => ({
     "&": "&amp;",
@@ -41,6 +45,7 @@ function renderCart() {
   $("#cartCount").textContent = totalItems;
   $("#cartItemLabel").textContent = `(${totalItems})`;
   $("#cartTotal").textContent = currency(subtotal);
+  $("#discountedTotal").textContent = discountCurrency(subtotal * 0.9);
   $("#shippingGap").textContent = subtotal >= 180 ? "已获得" : currency(180 - subtotal);
   const cartItems = $("#cartItems");
 
@@ -52,7 +57,7 @@ function renderCart() {
 
   cartItems.innerHTML = items.map((item) => `
     <article class="cart-line">
-      <div class="cart-thumb ${escapeHtml(item.thumb)}">${escapeHtml(item.glyph)}</div>
+      <div class="cart-thumb ${escapeHtml(item.thumb)}">${item.image ? `<img src="${escapeHtml(item.image)}" alt="" loading="lazy">` : escapeHtml(item.glyph)}</div>
       <div class="cart-line-info">
         <p>${escapeHtml(item.brand)}</p><h3>${escapeHtml(item.name)}</h3><b>${currency(item.price)}</b>
         <button class="remove-item" data-id="${escapeHtml(item.id)}" aria-label="移除 ${escapeHtml(item.name)}">×</button>
@@ -104,11 +109,14 @@ function matchedProducts() {
 }
 
 function productCard(product) {
+  const productMedia = product.image
+    ? `<img class="catalog-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)} 商品图" loading="lazy" decoding="async">`
+    : `<span class="product-code">${escapeHtml(product.glyph)}</span>`;
   return `
     <article class="product-card" data-category="${escapeHtml(product.category)}">
       <div class="product-visual catalog-visual ${escapeHtml(product.thumb)}">
         <span class="product-badge">${escapeHtml(product.brand)}</span>
-        <span class="product-code">${escapeHtml(product.glyph)}</span>
+        ${productMedia}
         <span class="product-serial">${escapeHtml(product.name)}</span>
         <button class="quick-add" data-id="${escapeHtml(product.id)}" aria-label="将 ${escapeHtml(product.name)} 加入购物袋">＋</button>
       </div>
@@ -205,7 +213,22 @@ $("#newsletterForm").addEventListener("submit", (event) => {
 });
 $("#checkoutButton").addEventListener("click", () => {
   if (!state.cart.length) return showToast("先挑一件让你心动的好物吧。");
-  showToast("结账与 WhatsApp 下单正在配置中。");
+  const items = state.cart.filter((item) => item.quantity > 0);
+  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const orderLines = items.map((item) => `• ${item.name} × ${item.quantity} — ${currency(item.price * item.quantity)}`).join("\n");
+  const message = [
+    "你好 FullLove KL，我想通过 WhatsApp 下单并享受 9 折优惠。",
+    "",
+    "订单：",
+    orderLines,
+    "",
+    `小计：${currency(subtotal)}`,
+    `通讯下单 9 折价：${discountCurrency(subtotal * 0.9)}`,
+    "",
+    "请帮我确认库存、配送与最终金额。"
+  ].join("\n");
+  window.open(`https://wa.me/601111146868?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+  showToast("正在打开 WhatsApp 下单…");
 });
 $("#storyButton").addEventListener("click", () => {
   document.querySelector("#promise").scrollIntoView({ behavior: "smooth" });
