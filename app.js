@@ -30,6 +30,18 @@ function escapeHtml(value) {
   })[character]);
 }
 
+function spriteStyle(sprite) {
+  const x = sprite.cols > 1 ? (sprite.x / (sprite.cols - 1)) * 100 : 0;
+  const y = sprite.rows > 1 ? (sprite.y / (sprite.rows - 1)) * 100 : 0;
+  return `background-image:url('${escapeHtml(sprite.image)}');background-size:${sprite.cols * 100}% ${sprite.rows * 100}%;background-position:${x}% ${y}%;`;
+}
+
+function cartMedia(item) {
+  if (item.sprite) return `<span class="cart-sprite" style="${spriteStyle(item.sprite)}"></span>`;
+  if (item.image) return `<img src="${escapeHtml(item.image)}" alt="" loading="lazy">`;
+  return escapeHtml(item.glyph);
+}
+
 function showToast(message) {
   const toast = $("#toast");
   toast.textContent = message;
@@ -57,7 +69,7 @@ function renderCart() {
 
   cartItems.innerHTML = items.map((item) => `
     <article class="cart-line">
-      <div class="cart-thumb ${escapeHtml(item.thumb)}">${item.image ? `<img src="${escapeHtml(item.image)}" alt="" loading="lazy">` : escapeHtml(item.glyph)}</div>
+      <div class="cart-thumb ${escapeHtml(item.thumb)}">${cartMedia(item)}</div>
       <div class="cart-line-info">
         <p>${escapeHtml(item.brand)}</p><h3>${escapeHtml(item.name)}</h3><b>${currency(item.price)}</b>
         <button class="remove-item" data-id="${escapeHtml(item.id)}" aria-label="移除 ${escapeHtml(item.name)}">×</button>
@@ -109,7 +121,9 @@ function matchedProducts() {
 }
 
 function productCard(product) {
-  const productMedia = product.image
+  const productMedia = product.sprite
+    ? `<span class="catalog-image catalog-sprite" style="${spriteStyle(product.sprite)}" role="img" aria-label="${escapeHtml(product.name)} 商品图"></span>`
+    : product.image
     ? `<img class="catalog-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)} 商品图" loading="lazy" decoding="async">`
     : `<span class="product-code">${escapeHtml(product.glyph)}</span>`;
   return `
