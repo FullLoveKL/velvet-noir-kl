@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#160f16" />
+    <meta
+      name="description"
+      content="Velvet Noir KL — 面向吉隆坡的成人生活方式精品店，提供私密包装与本地配送。"
+    />
+    <title>Velvet Noir KL — 私密愉悦精品店</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <p>KL 全区满 RM180 享免费私密配送</p>
+      <span aria-hidden="true">✦</span>
+      <p>全站仅限 18 岁以上人士</p>
+    </div>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="Velvet Noir KL 首页">
+        <span class="brand-mark">V</span>
+        <span>VELVET <em>NOIR</em><small>KL · PRIVATE PLEASURE</small></span>
+      </a>
+
+      <nav class="main-nav" aria-label="主要导航">
+        <a href="#shop">精选系列</a>
+        <a href="#promise">私密承诺</a>
+        <a href="#journal">灵感手记</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-button" id="searchButton" aria-label="搜索商品" title="搜索商品">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.1 4.1"></path></svg>
+        </button>
+        <button class="cart-trigger" id="cartButton" aria-label="打开购物袋">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+          <span>购物袋</span><b id="cartCount">0</b>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> KUALA LUMPUR · EST. 2026</p>
+          <h1>为只属于你的<br /><i>夜晚</i>，精心挑选。</h1>
+          <p class="hero-text">不必张扬，也值得被认真对待。来自全球的亲密好物，以克制、优雅的方式送到你的门口。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#shop">探索精品 <span>↗</span></a>
+            <button class="text-link" id="storyButton">关于 Velvet Noir <span>→</span></button>
+          </div>
+          <div class="hero-meta">
+            <div><b>48 小时</b><span>KL 市区极速送达</span></div>
+            <div><b>100%</b><span>无标识私密包装</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="抽象丝绒与月相装饰">
+          <div class="moon moon-one"></div>
+          <div class="moon moon-two"></div>
+          <div class="moon moon-three"></div>
+          <div class="silk silk-one"></div>
+          <div class="silk silk-two"></div>
+          <p>AFTER<br />DARK</p>
+          <span>01 / 04</span>
+        </div>
+        <div class="hero-note"><span>SCROLL TO UNFOLD</span><i></i></div>
+      </section>
+
+      <section class="intro-strip">
+        <p>慢一点，听见自己。</p><span>✦</span><p>触感是最诚实的语言。</p><span>✦</span><p>私密，也可以很美。</p>
+      </section>
+
+      <section class="collection" id="shop">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span></span> CURATED FOR YOU</p>
+            <h2>今晚，想靠近<br /><i>哪一种感受？</i></h2>
+          </div>
+          <a class="all-link" href="#all-products">查看全部 <span>↗</span></a>
+        </div>
+
+        <div class="category-tabs" role="tablist" aria-label="商品分类">
+          <button class="active" data-filter="all" role="tab" aria-selected="true">全部精选</button>
+          <button data-filter="lingerie" role="tab" aria-selected="false">情趣内衣</button>
+          <button data-filter="care" role="tab" aria-selected="false">亲密护理</button>
+          <button data-filter="gifts" role="tab" aria-selected="false">心意礼物</button>
+        </div>
+
+        <div class="product-grid" id="all-products">
+          <article class="product-card" data-category="lingerie">
+            <div class="product-visual visual-rose">
+              <span class="product-badge">BESTSELLER</span>
+              <div class="lingerie-shape rose-shape"><i></i><b></b></div>
+              <button class="quick-add" data-id="rose" aria-label="加入购物袋">＋</button>
+            </div>
+            <div class="product-info">
+              <p>NOIR ATELIER</p>
+              <h3>Rosé Lace Set</h3>
+              <div><span>蕾丝三件套 · 珊瑚粉</span><b>RM 189</b></div>
+            </div>
+          </article>
+
+          <article class="product-card product-card-featured" data-category="care">
+            <div class="product-visual visual-plum">
+              <span class="product-badge">NEW DROP</span>
+              <div class="bottle"><i></i><b>GLOW<br />OIL</b></div>
+              <button class="quick-add" data-id="glow" aria-label="加入购物袋">＋</button>
+            </div>
+            <div class="product-info">
+              <p>THE SENSORY LAB</p>
+              <h3>Warm Glow Body Oil</h3>
+              <div><span>按摩身体油 · 琥珀香</span><b>RM 109</b></div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="gifts">
+            <div class="product-visual visual-ink">
+              <span class="product-badge">LIMITED</span>
+              <div class="gift-box"><span></span><i></i></div>
+              <button class="quick-add" data-id="midnight" aria-label="加入购物袋">＋</button>
+            </div>
+            <div class="product-info">
+              <p>VELVET NOIR</p>
+              <h3>Midnight Ritual Box</h3>
+              <div><span>双人探索礼盒</span><b>RM 298</b></div>
+            </div>
+          </article>
+
+          <article class="product-card" data-category="lingerie">
+            <div class="product-visual visual-cream">
+              <div class="lingerie-shape cream-shape"><i></i><b></b></div>
+              <button class="quick-add" data-id="ivory" aria-label="加入购物袋">＋</button>
+            </div>
+            <div class="product-info">
+              <p>NOIR ATELIER</p>
+              <h3>Ivory Whisper Slip</h3>
+              <div><span>缎面睡裙 · 珍珠白</span><b>RM 169</b></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="feature-banner">
+        <div class="feature-copy">
+          <p class="eyebrow"><span></span> THE RITUAL EDIT</p>
+          <h2>把平常的夜晚，<br />变成一场仪式。</h2>
+          <p>从柔软的触感到恰到好处的香气，每一件都为共享的亲密时刻而选。</p>
+          <button class="button button-light" data-id="midnight">探索双人礼盒 <span>↗</span></button>
+        </div>
+        <div class="feature-art">
+          <div class="feature-disc"></div>
+          <div class="feature-bloom bloom-a"></div>
+          <div class="feature-bloom bloom-b"></div>
+          <p>RITUAL<br />OF US</p>
+        </div>
+      </section>
+
+      <section class="promise" id="promise">
+        <p class="eyebrow centered"><span></span> THE VELVET PROMISE <span></span></p>
+        <h2>你的自在，由我们守护。</h2>
+        <div class="promise-grid">
+          <article>
+            <span>01</span>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M9 18h30v21H9z"></path><path d="M16 18v-4a8 8 0 0 1 16 0v4M17 29l5 5 10-11"></path></svg>
+            <h3>无标识包装</h3>
+            <p>外箱不显示商品名称或品牌，以普通寄件资料寄出。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 42s15-8.2 15-20.5V9.5L24 4 9 9.5v12C9 33.8 24 42 24 42Z"></path><path d="M17 23.5 22 29l10-11"></path></svg>
+            <h3>安心精选</h3>
+            <p>我们认真挑选材质、包装与使用体验，并提供清晰的护理说明。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 24h25"></path><path d="m26 15 10 9-10 9"></path><path d="M36 16h5v21H16v-5"></path></svg>
+            <h3>吉隆坡配送</h3>
+            <p>支持 KL 市区派送与到店自取；全程进度可查询。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="journal" id="journal">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span></span> NOTES ON INTIMACY</p>
+            <h2>不只是产品，<br /><i>也是一份灵感。</i></h2>
+          </div>
+          <a class="all-link" href="#top">进入手记 <span>↗</span></a>
+        </div>
+        <div class="journal-grid">
+          <article class="journal-card journal-large">
+            <div class="journal-image journal-image-one"><p>THE<br />ART OF<br /><i>SLOW</i></p></div>
+            <div><span>GUIDE · 04 MIN READ</span><h3>给忙碌生活的一份亲密留白</h3><a href="#top">阅读手记 →</a></div>
+          </article>
+          <article class="journal-card">
+            <div class="journal-image journal-image-two"><p>CARE<br />IS<br />SEXY</p></div>
+            <div><span>CARE · 03 MIN READ</span><h3>如何挑选属于自己的身体护理</h3><a href="#top">阅读手记 →</a></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="newsletter">
+        <p class="eyebrow centered"><span></span> PRIVATE LETTERS <span></span></p>
+        <h2>留一盏灯，给下一次心动。</h2>
+        <p>订阅不定期灵感、私享新品预览与 KL 专属礼遇。</p>
+        <form id="newsletterForm">
+          <label class="sr-only" for="email">电邮地址</label>
+          <input id="email" type="email" placeholder="你的电邮地址" required />
+          <button type="submit" aria-label="订阅">↗</button>
+        </form>
+        <small>订阅即代表你已年满 18 岁，并同意接收 Velvet Noir 的私享资讯。</small>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-main">
+        <a class="brand brand-footer" href="#top"><span class="brand-mark">V</span><span>VELVET <em>NOIR</em><small>KL · PRIVATE PLEASURE</small></span></a>
+        <p>我们相信：值得被好好对待的，从来不只是一段关系，也包括你自己。</p>
+        <div class="footer-links">
+          <div><h3>购物</h3><a href="#shop">精品系列</a><a href="#promise">配送与包装</a><a href="#top">常见问题</a></div>
+          <div><h3>联络</h3><a href="mailto:hello@velvetnoir.my">hello@velvetnoir.my</a><a href="#top">Instagram</a><a href="#top">WhatsApp 咨询</a></div>
+          <div><h3>支持</h3><a href="#top">隐私政策</a><a href="#top">退换说明</a><a href="#top">条款与条件</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 VELVET NOIR KL</span><span>18+ · PLEASE ENJOY RESPONSIBLY</span><span>MADE WITH CARE IN KUALA LUMPUR</span></div>
+    </footer>
+
+    <aside class="cart-panel" id="cartPanel" aria-label="购物袋" aria-hidden="true">
+      <div class="cart-header"><div><p class="eyebrow"><span></span> YOUR SELECTION</p><h2>购物袋 <span id="cartItemLabel">(0)</span></h2></div><button class="close-button" id="closeCart" aria-label="关闭购物袋">×</button></div>
+      <div class="cart-items" id="cartItems"><div class="empty-cart"><span>✦</span><p>你的购物袋还是空的。</p><button id="continueShopping">去逛逛</button></div></div>
+      <div class="cart-footer"><div class="cart-shipping"><span>✦</span><p>距离 KL 免费配送还差 <b id="shippingGap">RM 180</b></p></div><div class="cart-total"><span>小计</span><b id="cartTotal">RM 0</b></div><button class="checkout-button" id="checkoutButton">安全结账 <span>→</span></button><small>无标识包装 · 安全付款 · KL 本地配送</small></div>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
+    <section class="age-gate" id="ageGate" aria-modal="true" role="dialog" aria-labelledby="ageTitle">
+      <div class="age-card">
+        <span class="age-symbol">18+</span>
+        <p class="eyebrow centered"><span></span> WELCOME TO VELVET NOIR <span></span></p>
+        <h2 id="ageTitle">这是一个只属于<br /><i>成年人的空间。</i></h2>
+        <p>进入前，请确认你已年满 18 岁，并且同意遵守所在地的相关法律与规定。</p>
+        <div><button class="button button-primary" id="enterSite">我已满 18 岁 <span>↗</span></button><button class="age-leave" id="leaveSite">离开此页面</button></div>
+        <small>我们重视你的隐私；不会在你的装置上存放可识别的浏览资料。</small>
+      </div>
+    </section>
+
+    <div class="search-modal" id="searchModal" aria-hidden="true">
+      <div class="search-card"><button class="close-button" id="closeSearch" aria-label="关闭搜索">×</button><p class="eyebrow"><span></span> FIND YOUR MOOD</p><h2>寻找你的心动。</h2><label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.1 4.1"></path></svg><input id="searchInput" type="search" placeholder="搜索：蕾丝、礼盒、护理…" /></label><div id="searchResults" class="search-results"></div></div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
