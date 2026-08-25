@@ -84,68 +84,22 @@
             <p class="eyebrow"><span></span> CURATED FOR YOU</p>
             <h2>今晚，想靠近<br /><i>哪一种感受？</i></h2>
           </div>
-          <a class="all-link" href="#all-products">查看全部 <span>↗</span></a>
+          <a class="all-link" href="#all-products">1,073 款在售 <span>↗</span></a>
         </div>
 
         <div class="category-tabs" role="tablist" aria-label="商品分类">
-          <button class="active" data-filter="all" role="tab" aria-selected="true">全部精选</button>
-          <button data-filter="lingerie" role="tab" aria-selected="false">情趣内衣</button>
-          <button data-filter="care" role="tab" aria-selected="false">亲密护理</button>
-          <button data-filter="gifts" role="tab" aria-selected="false">心意礼物</button>
+          <button class="active" data-filter="all" role="tab" aria-selected="true">全部款式</button>
+          <button data-filter="网袜内裤" role="tab" aria-selected="false">网袜内裤</button>
+          <button data-filter="网衣" role="tab" aria-selected="false">网衣</button>
+          <button data-filter="99系列" role="tab" aria-selected="false">99 系列</button>
+          <button data-filter="95系列" role="tab" aria-selected="false">95 系列</button>
+          <button data-filter="混合系列" role="tab" aria-selected="false">混合系列</button>
+          <button data-filter="其他系列" role="tab" aria-selected="false">其他系列</button>
         </div>
 
-        <div class="product-grid" id="all-products">
-          <article class="product-card" data-category="lingerie">
-            <div class="product-visual visual-rose">
-              <span class="product-badge">BESTSELLER</span>
-              <div class="lingerie-shape rose-shape"><i></i><b></b></div>
-              <button class="quick-add" data-id="rose" aria-label="加入购物袋">＋</button>
-            </div>
-            <div class="product-info">
-              <p>NOIR ATELIER</p>
-              <h3>Rosé Lace Set</h3>
-              <div><span>蕾丝三件套 · 珊瑚粉</span><b>RM 189</b></div>
-            </div>
-          </article>
-
-          <article class="product-card product-card-featured" data-category="care">
-            <div class="product-visual visual-plum">
-              <span class="product-badge">NEW DROP</span>
-              <div class="bottle"><i></i><b>GLOW<br />OIL</b></div>
-              <button class="quick-add" data-id="glow" aria-label="加入购物袋">＋</button>
-            </div>
-            <div class="product-info">
-              <p>THE SENSORY LAB</p>
-              <h3>Warm Glow Body Oil</h3>
-              <div><span>按摩身体油 · 琥珀香</span><b>RM 109</b></div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="gifts">
-            <div class="product-visual visual-ink">
-              <span class="product-badge">LIMITED</span>
-              <div class="gift-box"><span></span><i></i></div>
-              <button class="quick-add" data-id="midnight" aria-label="加入购物袋">＋</button>
-            </div>
-            <div class="product-info">
-              <p>VELVET NOIR</p>
-              <h3>Midnight Ritual Box</h3>
-              <div><span>双人探索礼盒</span><b>RM 298</b></div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="lingerie">
-            <div class="product-visual visual-cream">
-              <div class="lingerie-shape cream-shape"><i></i><b></b></div>
-              <button class="quick-add" data-id="ivory" aria-label="加入购物袋">＋</button>
-            </div>
-            <div class="product-info">
-              <p>NOIR ATELIER</p>
-              <h3>Ivory Whisper Slip</h3>
-              <div><span>缎面睡裙 · 珍珠白</span><b>RM 169</b></div>
-            </div>
-          </article>
-        </div>
+        <p class="catalog-status" id="catalogStatus" aria-live="polite">正在载入可售款式…</p>
+        <div class="product-grid" id="all-products"></div>
+        <div class="catalog-more" id="catalogMore"><button class="button button-primary" id="loadMoreButton">加载更多款式 <span>↓</span></button></div>
       </section>
 
       <section class="feature-banner">
@@ -153,7 +107,7 @@
           <p class="eyebrow"><span></span> THE RITUAL EDIT</p>
           <h2>把平常的夜晚，<br />变成一场仪式。</h2>
           <p>从柔软的触感到恰到好处的香气，每一件都为共享的亲密时刻而选。</p>
-          <button class="button button-light" data-id="midnight">探索双人礼盒 <span>↗</span></button>
+          <button class="button button-light" id="viewCatalogButton">探索可售款式 <span>↗</span></button>
         </div>
         <div class="feature-art">
           <div class="feature-disc"></div>
@@ -257,6 +211,7 @@
     </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+    <script src="products.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
