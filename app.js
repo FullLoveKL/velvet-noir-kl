@@ -164,7 +164,7 @@ const staticText = {
   "私密，也可以很美。": { en: "Private can be beautiful.", ms: "Peribadi juga boleh menjadi indah." },
   "今晚，想靠近": { en: "Tonight, which feeling", ms: "Malam ini, rasa yang mana" },
   "哪一种感受？": { en: "do you want to lean into?", ms: "ingin anda dekati?" },
-  "1,073 款在售": { en: "1,073 styles available", ms: "1,073 gaya tersedia" },
+  "300 款在售": { en: "300 styles available", ms: "300 gaya tersedia" },
   "全部款式": { en: "All styles", ms: "Semua gaya" },
   "网袜内裤": { en: "Fishnet & lingerie", ms: "Jala & pakaian dalam" },
   "网衣": { en: "Fishnet wear", ms: "Pakaian jala" },
