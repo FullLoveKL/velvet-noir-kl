@@ -213,6 +213,7 @@ const staticText = {
   "WhatsApp 下单享 9 折": { en: "WhatsApp order · 10% off", ms: "Pesan WhatsApp · Diskaun 10%" },
   "微信下单请添加：": { en: "Add on WeChat to order:", ms: "Tambah WeChat untuk membuat pesanan:" },
   "隐私发货 · 不支持自取 · 满 RM180 包邮 Lalamove": { en: "Discreet dispatch · No self-collection · Free Lalamove delivery from RM180", ms: "Penghantaran sulit · Tiada ambil sendiri · Lalamove percuma untuk pesanan RM180 ke atas" },
+  "到货即视为使用，不支持退换，请谨慎购买。": { en: "Delivery is treated as use. Returns and exchanges are not accepted; please purchase carefully.", ms: "Barang yang telah sampai dianggap telah digunakan. Pemulangan atau pertukaran tidak diterima; sila beli dengan teliti." },
   "这是一个只属于": { en: "This is a space", ms: "Ini ialah ruang" },
   "成年人的空间。": { en: "for adults only.", ms: "untuk dewasa sahaja." },
   "进入前，请确认你已年满 18 岁，并且同意遵守所在地的相关法律与规定。": { en: "Before entering, please confirm that you are 18 or over and agree to follow the laws and rules where you live.", ms: "Sebelum masuk, sila sahkan bahawa anda berumur 18 tahun ke atas dan bersetuju mematuhi undang-undang serta peraturan di tempat anda." },
@@ -245,6 +246,234 @@ const productTerms = {
   }
 };
 
+const supportContent = {
+  zh: {
+    title: "购买前，请先看这里。",
+    intro: "卫生、配送、订单与隐私规则都写在这里；提交订单即表示你已阅读并同意适用条款。",
+    updated: "最后更新：2026 年 8 月 27 日",
+    sections: [
+      {
+        id: "support-returns",
+        number: "01",
+        title: "退换与卫生规则",
+        lead: "到货即视为使用，不支持退换，请谨慎购买。",
+        paragraphs: [
+          "为保护贴身用品的卫生、安全与每一位顾客的权益，情趣内衣、网袜、网衣及其他个人使用类商品一经完成派送或交付，即按本规则视为已使用。除适用法律不得排除的权利外，不接受因个人偏好、颜色或尺寸选择、重复下单、临时改变主意、已拆封或已签收后提出的退换请求。",
+          "如收到的商品与已确认订单明显不符、运输途中出现明显损坏，或在首次检查时发现可见瑕疵，请在签收后 24 小时内保留完整外包装、商品标签与未使用状态，并通过下单使用的联络渠道提交订单资料及清晰照片／视频，以便核查。提交资料并不代表自动获准退款、换货或补寄；每个个案会按实际情况与适用法律处理。",
+          "下单前请仔细查看商品编号、颜色、尺码与价格；如对款式、材质、配送范围或使用方式有疑问，请先提出确认。"
+        ],
+        bullets: [
+          "签收、骑手标记完成或由收件人／授权人员接收，均视为到货。",
+          "请勿在提出商品异常核查前穿戴、清洗、试用或丢弃包装。",
+          "本规则不意图限制任何不能依法排除的消费者权利。"
+        ]
+      },
+      {
+        id: "support-delivery",
+        number: "02",
+        title: "配送、签收与地址规则",
+        lead: "下单即极速发货；KL 市区目标为 1.5 小时内 Lalamove 送达。",
+        paragraphs: [
+          "极速发货与 1.5 小时送达为 KL 市区的目标时效，须以库存、订单资料、收件地址、骑手接单、道路、天气、节假日与现场情况允许为前提，并非固定保证时限。订单确认前、缺货、地址不完整、联络不上收件人或出现不可控延误时，配送时间可能调整。",
+          "本店只提供配送，不支持到店自取或安排私下取货。请在下单时提供可安全接收的详细地址与可联络方式；如需更改地址，请在骑手接单前尽快提出。骑手已接单、已到达或配送开始后，地址改动、等待、绕路或二次派送可能产生额外费用，并须先获确认。",
+          "购物车商品小计满 RM180 可享一次 Lalamove 免运费资格；最终配送范围、可能的附加费用及可否适用优惠，以订单确认时的说明为准。"
+        ],
+        bullets: [
+          "所有包裹采用无标识隐私包装，外箱不展示商品名称或品牌。",
+          "请留意骑手来电／讯息并安排接收；无人接收、错误地址或超时等情形可能影响配送。",
+          "配送完成后，请先检查外包装是否完整，再按卫生规则处理商品。"
+        ]
+      },
+      {
+        id: "support-orders",
+        number: "03",
+        title: "订单、库存与价格说明",
+        lead: "商品以订单确认时的库存、价格与配送条件为准。",
+        paragraphs: [
+          "网站展示内容用于协助挑选；商品图片、色调、包装、蕾丝纹理与配件会因拍摄光线、屏幕显示、批次或供货调整出现合理差异。除非已在下单沟通中明确确认，商品展示不构成对即时库存、特定颜色、特定配件或到货时间的保证。",
+          "所有价格以 RM 为单位。加入购物袋不代表锁定库存或保留价格；只有在库存、款号、数量、配送地址、适用优惠与最终金额获得确认后，订单才会进入处理。若出现明显标价错误、重复订单、库存不足、无法完成配送或存在合理的风险提示，订单可能需要更正、取消或重新确认。",
+          "通过 WhatsApp 或微信完成的订单可按当时公布的 9 折通讯下单优惠处理；除非订单确认时另有明确说明，不同优惠、赠品、运费优惠和未来优惠券不可自动叠加。"
+        ],
+        bullets: [
+          "请使用商品编号确认款式，避免仅以图片或昵称判断。",
+          "下单后如需变更，请在订单进入配送前提出；能否处理取决于库存与配送状态。",
+          "请仅为本人或获授权的成年人购买及使用商品。"
+        ]
+      },
+      {
+        id: "support-promotions",
+        number: "04",
+        title: "优惠券与促销规则",
+        lead: "RM10 手机优惠券计划尚未启用；启用前不会在本网站收集手机号。",
+        paragraphs: [
+          "计划启用后，RM10 优惠券将设有最低 RM30 商品小计门槛，并在符合条件的购物袋中自动扣减。届时优惠券页面会在提交手机号之前显示独立的同意说明、发券方式、有效期、适用范围、是否可与其他优惠同时使用，以及删除或停止营销联络的方式。",
+          "为了避免误导，在安全资料库、私密后台、发券通道和核销记录尚未配置完成前，网站不会显示一个看似已提交但实际没有被安全保存的手机号表单，也不会假称已发送短信或优惠券。",
+          "任何已启用的优惠以页面显示的条件及订单确认结果为准。系统会拒绝明显重复、篡改、转售、批量取得或不符合门槛的使用方式；如出现异常，优惠可能被撤销或要求重新确认。"
+        ],
+        bullets: [
+          "RM10 优惠券的门槛将按商品小计计算，运费与不可叠加折扣不计入门槛。",
+          "优惠券仅供本人正常消费使用，不兑换现金、不找零。",
+          "后续若启用手机号收集，收集目的、保存期限与数据权利会在表单旁再次说明。"
+        ]
+      },
+      {
+        id: "support-terms",
+        number: "05",
+        title: "使用条款与成人责任",
+        lead: "本网站及商品仅面向年满 18 岁、且所在地法律允许的成年人。",
+        paragraphs: [
+          "继续浏览、加入购物袋、使用优惠或提交订单，即表示你确认自己符合年龄与所在地法律要求，并同意不为未成年人购买、不向未成年人转交商品，也不会将网站或商品用于任何违法、伤害、骚扰、胁迫或未经同意的用途。",
+          "商品资讯仅为一般产品说明，并非医疗、健康、心理、法律或专业意见。请依照包装说明使用；如对材质敏感、处于特殊健康状况，或使用时出现不适，应立即停止并寻求合适的专业意见。",
+          "网站可为维护安全、库存准确性、优惠公平性与服务稳定性而更新商品、价格、规则或页面内容。更新不会追溯改变已经确认的订单，除非为处理明显错误、法律义务或双方另行同意的事项。"
+        ],
+        bullets: [
+          "不得复制、抓取、批量下载或以自动化方式滥用网站内容、价格或优惠。",
+          "不得冒用他人资料、提交虚假地址，或干扰配送与订单确认流程。",
+          "如条款的任何部分无效，其余部分在法律允许范围内继续适用。"
+        ]
+      },
+      {
+        id: "support-privacy",
+        number: "06",
+        title: "隐私政策与资料权利",
+        lead: "本网站目前不设服务器端手机号收集；不会把访客号码写入公开代码库。",
+        paragraphs: [
+          "当前网站在你的装置内使用必要的本地状态来记住年龄确认和语言选择；这些状态用于页面体验，不会由网站直接上传为可识别的访客资料。邮箱订阅展示目前也未连接资料库。若你主动跳转至 WhatsApp、微信或其他联络渠道下单，后续讯息及联络资料会在对应平台与订单沟通流程中处理，并受该平台规则及订单所需用途约束。",
+          "若日后启用手机号优惠券功能，表单会在收集前明确说明：收集的资料种类、用途（发券、核销、防止滥用及在你另行同意时的营销联络）、保存期限、可能接收资料的服务商、跨境处理情形、如何撤回同意，以及查询、更正或删除资料的联络方式。号码将只存放于受访问控制的私密资料库，绝不写入 GitHub、网页源代码或公开报表。",
+          "你有权在适用法律允许范围内了解资料处理目的、选择是否提供、要求查阅、更正或删除资料，以及停止直接营销联络。与个人资料有关的请求应通过你下单或提交资料时显示的私密支援渠道提出；为保护安全，处理前可能需要合理的身份验证。"
+        ],
+        bullets: [
+          "不会出售、公开展示或以公开下载方式分享个人联系方式。",
+          "仅保留为已说明目的所必需的资料，并采取合理措施防止未授权访问、误用或遗失。",
+          "政策更新会在本页面公布；收集前会提供当时版本的通知与选择。"
+        ]
+      }
+    ]
+  },
+  en: {
+    title: "Please read before you buy.",
+    intro: "Hygiene, delivery, order and privacy rules are set out here. By placing an order, you confirm that you have read and accepted the applicable terms.",
+    updated: "Last updated: 27 August 2026",
+    sections: [
+      {
+        id: "support-returns", number: "01", title: "Returns & hygiene", lead: "Delivery is treated as use. Returns and exchanges are not accepted; please purchase carefully.",
+        paragraphs: [
+          "To protect hygiene, safety and every customer's interests, intimate apparel, hosiery, fishnet wear and other personal-use items are treated as used once delivery or handover is completed. Except for rights that cannot be excluded under applicable law, requests based on preference, colour or size choice, duplicate orders, a change of mind, opening or accepting a parcel are not eligible for return or exchange.",
+          "If an item clearly differs from the confirmed order, is visibly damaged in transit, or has an apparent defect on first inspection, keep the outer packaging, labels and item unused. Send the order details and clear photos or video through the ordering channel within 24 hours of delivery so it can be reviewed. Sending information does not automatically approve a refund, replacement or reshipment; each case is assessed on its facts and applicable law.",
+          "Please check the product code, colour, size and price carefully before ordering. Ask for clarification before purchase if you are unsure about a style, material, delivery area or use."
+        ],
+        bullets: ["A completed rider status or receipt by the recipient or an authorised person counts as delivery.", "Do not wear, wash, try or discard packaging before an item issue is reviewed.", "Nothing here is intended to remove consumer rights that cannot legally be excluded."]
+      },
+      {
+        id: "support-delivery", number: "02", title: "Delivery, receipt & address", lead: "Orders are dispatched fast; central KL Lalamove delivery targets arrival within 1.5 hours.",
+        paragraphs: [
+          "Fast dispatch and the 1.5-hour target apply to central KL only and depend on stock, order details, address, rider availability, traffic, weather, public holidays and on-site conditions. They are targets, not fixed guarantees. Timing may change when stock needs confirmation, details are incomplete, the recipient cannot be reached or an event outside reasonable control occurs.",
+          "Delivery is provided only; self-collection and informal pickup are not available. Provide a safe, detailed delivery address and a reachable contact method when ordering. Request an address change before a rider accepts the job. After acceptance, arrival or dispatch, address changes, waiting, detours or re-delivery may carry an additional charge and require confirmation first.",
+          "One Lalamove delivery-fee waiver is available when the cart item subtotal reaches RM180. The final service area, any surcharge and eligibility are confirmed with the order."
+        ],
+        bullets: ["All parcels use unmarked discreet packaging; the outer box does not show a product name or brand.", "Please watch for rider calls or messages and arrange receipt; an unattended delivery, wrong address or delay may affect service.", "Check the outer package first after delivery, then follow the hygiene rules for the item."]
+      },
+      {
+        id: "support-orders", number: "03", title: "Orders, stock & pricing", lead: "Stock, price and delivery terms are confirmed with the order.",
+        paragraphs: [
+          "Website content is provided to help with selection. Product photos, colour tone, packaging, lace texture and accessories can vary reasonably with lighting, screens, batches or supplier changes. Unless confirmed in the order conversation, a display does not guarantee live stock, a particular colour or accessory, or a delivery time.",
+          "All prices are in RM. Adding an item to the bag does not reserve stock or lock a price. An order moves to processing only after stock, product code, quantity, delivery address, eligible promotions and final amount are confirmed. Obvious pricing errors, duplicate orders, unavailable stock, an unserviceable delivery or a reasonable risk signal may require correction, cancellation or reconfirmation.",
+          "WhatsApp or WeChat orders may receive the advertised 10% contact-order offer. Unless the order confirmation clearly states otherwise, separate promotions, gifts, delivery offers and future coupons do not automatically stack."
+        ],
+        bullets: ["Use the product code to confirm a style rather than relying only on a photo or nickname.", "Request changes before delivery begins; whether a change can be made depends on stock and delivery status.", "Purchase and use products only for yourself or another authorised adult."]
+      },
+      {
+        id: "support-promotions", number: "04", title: "Coupons & promotions", lead: "The RM10 mobile coupon programme is not active yet; this website will not collect phone numbers before it is safely launched.",
+        paragraphs: [
+          "When launched, the RM10 coupon will have a RM30 item-subtotal minimum and will deduct automatically from an eligible bag. Before a phone number is submitted, the campaign page will show separate consent, delivery method, validity, scope, stacking rules and a way to delete data or stop marketing contact.",
+          "To avoid misleading visitors, no phone form that appears submitted without secure storage will be shown while the private database, access-controlled dashboard, delivery channel and redemption record are not configured. The site will not claim that a message or coupon was sent when it was not.",
+          "Any active promotion is governed by the conditions displayed at the time and the order confirmation. Clearly duplicate, altered, resold, bulk-obtained or ineligible use may be rejected, withdrawn or require reconfirmation."
+        ],
+        bullets: ["The RM10 threshold will be based on item subtotal; delivery and non-stackable discounts do not count toward it.", "Coupons are for ordinary personal purchases only, are not cash and have no change value.", "If phone collection is activated later, the purpose, retention period and data rights will be stated beside the form again."]
+      },
+      {
+        id: "support-terms", number: "05", title: "Terms & adult responsibility", lead: "This site and its products are for adults aged 18+ where permitted by local law.",
+        paragraphs: [
+          "By browsing, adding items, using a promotion or placing an order, you confirm that you meet the age and local-law requirements. You agree not to purchase for or transfer products to a minor, and not to use the site or products for unlawful, harmful, harassing, coercive or non-consensual purposes.",
+          "Product information is general product information, not medical, health, psychological, legal or professional advice. Follow packaging instructions. If you have material sensitivities, a relevant health condition or discomfort during use, stop use and seek suitable professional advice.",
+          "Content, products, prices, rules and pages may be updated to maintain safety, stock accuracy, promotion fairness and service reliability. An update will not retrospectively change a confirmed order except to correct an obvious error, meet a legal duty or where otherwise agreed."
+        ],
+        bullets: ["Do not copy, scrape, bulk-download or automate misuse of site content, prices or promotions.", "Do not use another person's details, submit a false address or interfere with delivery or confirmation.", "If one part of these terms is invalid, the remaining parts continue where legally allowed."]
+      },
+      {
+        id: "support-privacy", number: "06", title: "Privacy notice & data rights", lead: "This site currently has no server-side phone collection and never writes visitor phone numbers to a public code repository.",
+        paragraphs: [
+          "The current site uses necessary local device state for age confirmation and language choice. It supports the page experience and is not uploaded by the site as identifiable visitor data. The newsletter display is not connected to a database. If you choose to open WhatsApp, WeChat or another ordering channel, later messages and contact information are handled in that platform and ordering flow, subject to its rules and the purposes required for the order.",
+          "If a mobile coupon is enabled later, the form will explain before collection: the data types, purposes (coupon delivery, redemption, abuse prevention and marketing only with separate permission), retention period, possible service providers, any cross-border processing, consent withdrawal, and how to request access, correction or deletion. Numbers will be kept only in an access-controlled private database, never in GitHub, page source or a public report.",
+          "Within applicable law, you may ask about the purpose of processing, choose whether to provide data, request access, correction or deletion, and stop direct marketing. Personal-data requests should use the private support route displayed when you place an order or submit data; reasonable identity checks may be needed to protect security."
+        ],
+        bullets: ["Personal contact details are not sold, publicly displayed or shared through public downloads.", "Data is retained only as long as needed for the stated purpose, with reasonable measures against unauthorised access, misuse or loss.", "Updates will be published here, and the current notice and choice will be shown before any collection."]
+      }
+    ]
+  },
+  ms: {
+    title: "Sila baca sebelum membeli.",
+    intro: "Peraturan kebersihan, penghantaran, pesanan dan privasi diterangkan di sini. Dengan membuat pesanan, anda mengesahkan bahawa anda telah membaca dan menerima terma yang terpakai.",
+    updated: "Kemas kini terakhir: 27 Ogos 2026",
+    sections: [
+      {
+        id: "support-returns", number: "01", title: "Pemulangan & kebersihan", lead: "Barang yang telah sampai dianggap telah digunakan. Pemulangan atau pertukaran tidak diterima; sila beli dengan teliti.",
+        paragraphs: [
+          "Bagi melindungi kebersihan, keselamatan dan kepentingan setiap pelanggan, pakaian intim, stoking, pakaian jala dan barangan kegunaan peribadi lain dianggap telah digunakan sebaik sahaja penghantaran atau serahan selesai. Kecuali hak yang tidak boleh dikecualikan di bawah undang-undang terpakai, permintaan kerana pilihan peribadi, pilihan warna atau saiz, pesanan berganda, berubah fikiran, pembukaan atau penerimaan bungkusan tidak layak untuk pemulangan atau pertukaran.",
+          "Jika barang jelas berbeza daripada pesanan yang disahkan, rosak dengan ketara semasa penghantaran, atau mempunyai kecacatan nyata semasa pemeriksaan pertama, simpan pembungkusan luar, label dan barang dalam keadaan tidak digunakan. Hantar butiran pesanan serta foto atau video yang jelas melalui saluran pesanan dalam tempoh 24 jam selepas diterima untuk semakan. Penghantaran maklumat tidak bermaksud bayaran balik, gantian atau penghantaran semula diluluskan secara automatik; setiap kes dinilai mengikut fakta dan undang-undang terpakai.",
+          "Sila semak kod produk, warna, saiz dan harga dengan teliti sebelum membuat pesanan. Minta penjelasan dahulu jika anda tidak pasti tentang gaya, bahan, kawasan penghantaran atau cara penggunaan."
+        ],
+        bullets: ["Status penghantaran selesai atau penerimaan oleh penerima atau orang yang diberi kuasa dikira sebagai sampai.", "Jangan pakai, cuci, cuba atau buang pembungkusan sebelum isu barang disemak.", "Tiada bahagian di sini bertujuan menghapuskan hak pengguna yang tidak boleh dikecualikan secara sah."]
+      },
+      {
+        id: "support-delivery", number: "02", title: "Penghantaran, penerimaan & alamat", lead: "Pesanan dihantar segera; penghantaran Lalamove di pusat KL menyasarkan ketibaan dalam 1.5 jam.",
+        paragraphs: [
+          "Penghantaran segera dan sasaran 1.5 jam hanya untuk pusat KL dan bergantung pada stok, butiran pesanan, alamat, ketersediaan penghantar, trafik, cuaca, cuti umum dan keadaan di lokasi. Ia ialah sasaran, bukan jaminan masa tetap. Masa mungkin berubah apabila stok perlu disahkan, butiran tidak lengkap, penerima tidak dapat dihubungi atau berlaku kejadian di luar kawalan munasabah.",
+          "Hanya penghantaran disediakan; ambil sendiri atau kutipan tidak rasmi tidak tersedia. Berikan alamat penghantaran yang selamat dan terperinci serta cara hubungan yang boleh dihubungi semasa membuat pesanan. Minta pertukaran alamat sebelum penghantar menerima tugasan. Selepas penerimaan tugasan, ketibaan atau penghantaran bermula, pertukaran alamat, menunggu, lencongan atau penghantaran semula mungkin dikenakan caj tambahan dan perlu disahkan dahulu.",
+          "Satu pengecualian caj penghantaran Lalamove tersedia apabila jumlah kecil barang dalam troli mencapai RM180. Kawasan servis akhir, sebarang caj tambahan dan kelayakan disahkan bersama pesanan."
+        ],
+        bullets: ["Semua bungkusan menggunakan pembungkusan sulit tanpa label; kotak luar tidak memaparkan nama produk atau jenama.", "Sila perhatikan panggilan atau mesej penghantar dan aturkan penerimaan; penghantaran tanpa penerima, alamat salah atau kelewatan boleh menjejaskan servis.", "Periksa bungkusan luar dahulu selepas diterima, kemudian ikut peraturan kebersihan bagi barang tersebut."]
+      },
+      {
+        id: "support-orders", number: "03", title: "Pesanan, stok & harga", lead: "Stok, harga dan syarat penghantaran disahkan bersama pesanan.",
+        paragraphs: [
+          "Kandungan laman membantu pemilihan. Foto produk, tona warna, pembungkusan, tekstur renda dan aksesori boleh berubah secara munasabah mengikut pencahayaan, skrin, kelompok atau perubahan pembekal. Melainkan telah disahkan dalam perbualan pesanan, paparan tidak menjamin stok langsung, warna atau aksesori tertentu, atau masa penghantaran.",
+          "Semua harga dalam RM. Menambah barang ke troli tidak menempah stok atau mengunci harga. Pesanan diproses hanya selepas stok, kod produk, kuantiti, alamat penghantaran, promosi layak dan jumlah akhir disahkan. Kesilapan harga yang jelas, pesanan berganda, stok tiada, penghantaran tidak dapat disediakan atau isyarat risiko munasabah mungkin memerlukan pembetulan, pembatalan atau pengesahan semula.",
+          "Pesanan melalui WhatsApp atau WeChat boleh menerima tawaran diskaun 10% pesanan komunikasi. Melainkan pengesahan pesanan menyatakan sebaliknya, promosi, hadiah, tawaran penghantaran dan kupon masa depan tidak digabungkan secara automatik."
+        ],
+        bullets: ["Gunakan kod produk untuk mengesahkan gaya dan bukan bergantung hanya pada foto atau nama ringkas.", "Minta perubahan sebelum penghantaran bermula; ia bergantung pada stok dan status penghantaran.", "Beli dan gunakan produk hanya untuk diri sendiri atau orang dewasa yang diberi kuasa."]
+      },
+      {
+        id: "support-promotions", number: "04", title: "Kupon & promosi", lead: "Program kupon telefon RM10 belum aktif; laman ini tidak akan mengumpul nombor telefon sebelum ia dilancarkan dengan selamat.",
+        paragraphs: [
+          "Apabila dilancarkan, kupon RM10 akan mempunyai jumlah kecil barang minimum RM30 dan akan ditolak secara automatik daripada troli yang layak. Sebelum nombor telefon dihantar, halaman kempen akan memaparkan persetujuan berasingan, cara penghantaran, tempoh sah, skop, peraturan gabungan dan cara memadam data atau menghentikan pemasaran.",
+          "Bagi mengelakkan pengunjung disesatkan, tiada borang telefon yang kelihatan seperti telah dihantar tanpa storan selamat akan dipaparkan selagi pangkalan data peribadi, papan pemuka kawalan akses, saluran penghantaran dan rekod penebusan belum disediakan. Laman tidak akan mendakwa mesej atau kupon telah dihantar jika ia belum dihantar.",
+          "Promosi aktif tertakluk pada syarat yang dipaparkan ketika itu dan pengesahan pesanan. Penggunaan yang jelas berganda, diubah suai, dijual semula, diperoleh secara pukal atau tidak layak boleh ditolak, ditarik balik atau memerlukan pengesahan semula."
+        ],
+        bullets: ["Ambang RM10 dikira berdasarkan jumlah kecil barang; penghantaran dan diskaun yang tidak boleh digabungkan tidak dikira.", "Kupon untuk pembelian peribadi biasa sahaja, bukan tunai dan tiada baki wang.", "Jika pengumpulan telefon diaktifkan kemudian, tujuan, tempoh simpanan dan hak data akan dinyatakan di sebelah borang sekali lagi."]
+      },
+      {
+        id: "support-terms", number: "05", title: "Terma & tanggungjawab dewasa", lead: "Laman dan produknya adalah untuk orang dewasa berumur 18 tahun ke atas apabila dibenarkan undang-undang tempatan.",
+        paragraphs: [
+          "Dengan melayari, menambah barang, menggunakan promosi atau membuat pesanan, anda mengesahkan bahawa anda memenuhi umur dan undang-undang tempatan. Anda bersetuju untuk tidak membeli untuk atau menyerahkan produk kepada kanak-kanak bawah umur, dan tidak menggunakan laman atau produk untuk tujuan yang menyalahi undang-undang, memudaratkan, mengganggu, memaksa atau tanpa persetujuan.",
+          "Maklumat produk ialah maklumat umum dan bukan nasihat perubatan, kesihatan, psikologi, undang-undang atau profesional. Ikuti arahan pembungkusan. Jika anda sensitif kepada bahan, mempunyai keadaan kesihatan berkaitan atau berasa tidak selesa ketika penggunaan, hentikan penggunaan dan dapatkan nasihat profesional yang sesuai.",
+          "Kandungan, produk, harga, peraturan dan halaman boleh dikemas kini untuk menjaga keselamatan, ketepatan stok, keadilan promosi dan kebolehpercayaan servis. Kemas kini tidak mengubah pesanan yang telah disahkan secara retrospektif kecuali untuk membetulkan kesilapan nyata, memenuhi kewajipan undang-undang atau jika dipersetujui sebaliknya."
+        ],
+        bullets: ["Jangan salin, mengikis, memuat turun secara pukal atau mengautomasikan penyalahgunaan kandungan, harga atau promosi laman.", "Jangan gunakan butiran orang lain, alamat palsu atau mengganggu proses penghantaran dan pengesahan.", "Jika satu bahagian terma tidak sah, bahagian lain terus terpakai setakat yang dibenarkan undang-undang."]
+      },
+      {
+        id: "support-privacy", number: "06", title: "Notis privasi & hak data", lead: "Laman ini kini tidak mempunyai pengumpulan telefon di pelayan dan tidak pernah menulis nombor telefon pengunjung ke repositori kod awam.",
+        paragraphs: [
+          "Laman semasa menggunakan keadaan peranti tempatan yang perlu untuk pengesahan umur dan pilihan bahasa. Ia menyokong pengalaman laman dan tidak dimuat naik oleh laman sebagai data pengunjung yang boleh dikenal pasti. Paparan langganan e-mel tidak disambungkan kepada pangkalan data. Jika anda memilih untuk membuka WhatsApp, WeChat atau saluran pesanan lain, mesej dan maklumat hubungan seterusnya dikendalikan dalam platform dan aliran pesanan tersebut, tertakluk kepada peraturannya dan tujuan pesanan.",
+          "Jika kupon telefon diaktifkan kemudian, borang akan menerangkan sebelum pengumpulan: jenis data, tujuan (penghantaran kupon, penebusan, pencegahan penyalahgunaan dan pemasaran hanya dengan kebenaran berasingan), tempoh simpanan, penyedia servis yang mungkin, pemprosesan rentas sempadan, penarikan balik persetujuan, serta cara meminta akses, pembetulan atau pemadaman. Nombor hanya disimpan dalam pangkalan data peribadi dengan kawalan akses, bukan dalam GitHub, sumber halaman atau laporan awam.",
+          "Dalam lingkungan undang-undang terpakai, anda boleh bertanya tujuan pemprosesan, memilih sama ada untuk memberi data, meminta akses, pembetulan atau pemadaman, dan menghentikan pemasaran langsung. Permintaan data peribadi perlu menggunakan saluran sokongan peribadi yang dipaparkan semasa pesanan atau penghantaran data; pemeriksaan identiti munasabah mungkin diperlukan untuk keselamatan."
+        ],
+        bullets: ["Butiran hubungan peribadi tidak dijual, dipaparkan kepada umum atau dikongsi melalui muat turun awam.", "Data disimpan hanya selama perlu untuk tujuan yang dinyatakan, dengan langkah munasabah terhadap akses tanpa kebenaran, penyalahgunaan atau kehilangan.", "Kemas kini diterbitkan di sini, dan notis serta pilihan semasa akan dipaparkan sebelum sebarang pengumpulan."]
+      }
+    ]
+  }
+};
+
 function currentCopy() {
   return copy[state.language];
 }
@@ -265,6 +494,23 @@ function escapeHtml(value) {
     "'": "&#39;",
     '"': "&quot;"
   })[character]);
+}
+
+function renderSupport() {
+  const support = supportContent[state.language];
+  if (!support || !$("#supportContent")) return;
+  $("#supportTitle").textContent = support.title;
+  $("#supportIntro").textContent = support.intro;
+  $("#supportContent").innerHTML = support.sections.map((section) => `
+    <details class="support-card" id="${escapeHtml(section.id)}"${section.id === "support-returns" ? " open" : ""}>
+      <summary><span>${escapeHtml(section.number)}</span><b>${escapeHtml(section.title)}</b><i aria-hidden="true">＋</i></summary>
+      <div class="support-card-content">
+        <p class="policy-lead">${escapeHtml(section.lead)}</p>
+        ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+        <ul>${section.bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>
+        <p class="policy-update">${escapeHtml(support.updated)}</p>
+      </div>
+    </details>`).join("");
 }
 
 function localizedCategory(category) {
@@ -494,6 +740,7 @@ function applyLanguage(language) {
   $("#cartPanel").setAttribute("aria-label", languageCopy.cart);
   $$(".language-menu button").forEach((button) => button.classList.toggle("active", button.dataset.language === language));
   translateStaticText();
+  renderSupport();
   renderCart();
   renderProducts();
   if ($("#searchModal").classList.contains("open")) renderSearch($("#searchInput").value);

@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260827-support-policy" />
   </head>
   <body>
     <div class="topbar">
@@ -169,6 +169,15 @@
         </div>
       </section>
 
+      <section class="support-center" id="support" aria-labelledby="supportTitle">
+        <div class="support-heading">
+          <p class="eyebrow"><span></span> PURCHASE SUPPORT</p>
+          <h2 id="supportTitle">购买前，请先看这里。</h2>
+          <p id="supportIntro">卫生、配送、订单与隐私规则都写在这里；提交订单即表示你已阅读并同意适用条款。</p>
+        </div>
+        <div class="support-grid" id="supportContent"></div>
+      </section>
+
       <section class="newsletter">
         <p class="eyebrow centered"><span></span> PRIVATE LETTERS <span></span></p>
         <h2>留一盏灯，给下一次心动。</h2>
@@ -187,9 +196,9 @@
         <a class="brand brand-footer" href="#top"><span class="brand-mark">V</span><span>VELVET <em>NOIR</em><small>KL · PRIVATE PLEASURE</small></span></a>
         <p>我们相信：值得被好好对待的，从来不只是一段关系，也包括你自己。</p>
         <div class="footer-links">
-          <div><h3>购物</h3><a href="#shop">精品系列</a><a href="#promise">配送与包装</a><a href="#top">常见问题</a></div>
+          <div><h3>购物</h3><a href="#shop">精品系列</a><a href="#promise">配送与包装</a><a href="#support">常见问题</a></div>
           <div><h3>联络</h3><a href="https://wa.me/601111146868" target="_blank" rel="noopener">WhatsApp：01111146868</a><a href="#wechat-order">微信：y12-ii</a><a href="https://wa.me/601111146868" target="_blank" rel="noopener">通讯下单享 9 折</a></div>
-          <div><h3>支持</h3><a href="#top">隐私政策</a><a href="#top">退换说明</a><a href="#top">条款与条件</a></div>
+          <div><h3>支持</h3><a href="#support-privacy">隐私政策</a><a href="#support-returns">退换说明</a><a href="#support-terms">条款与条件</a></div>
         </div>
       </div>
       <div class="footer-bottom"><span>© 2026 VELVET NOIR KL</span><span>18+ · PLEASE ENJOY RESPONSIBLY</span><span>MADE WITH CARE IN KUALA LUMPUR</span></div>
@@ -198,7 +207,7 @@
     <aside class="cart-panel" id="cartPanel" aria-label="购物袋" aria-hidden="true">
       <div class="cart-header"><div><p class="eyebrow"><span></span> YOUR SELECTION</p><h2>购物袋 <span id="cartItemLabel">(0)</span></h2></div><button class="close-button" id="closeCart" aria-label="关闭购物袋">×</button></div>
       <div class="cart-items" id="cartItems"><div class="empty-cart"><span>✦</span><p>你的购物袋还是空的。</p><button id="continueShopping">去逛逛</button></div></div>
-      <div class="cart-footer"><div class="cart-shipping"><span>✦</span><p id="shippingMessage">距离满 RM180 免 Lalamove 运费还差 <b id="shippingGap">RM 180</b></p></div><div class="cart-total"><span>小计</span><b id="cartTotal">RM 0</b></div><div class="cart-discount"><span>WhatsApp / 微信下单 9 折</span><b id="discountedTotal">RM 0.00</b></div><button class="checkout-button" id="checkoutButton">WhatsApp 下单享 9 折 <span>↗</span></button><p class="wechat-order" id="wechat-order">微信下单请添加：<b>y12-ii</b></p><small>隐私发货 · 不支持自取 · 满 RM180 包邮 Lalamove</small></div>
+      <div class="cart-footer"><div class="cart-shipping"><span>✦</span><p id="shippingMessage">距离满 RM180 免 Lalamove 运费还差 <b id="shippingGap">RM 180</b></p></div><div class="cart-total"><span>小计</span><b id="cartTotal">RM 0</b></div><div class="cart-discount"><span>WhatsApp / 微信下单 9 折</span><b id="discountedTotal">RM 0.00</b></div><button class="checkout-button" id="checkoutButton">WhatsApp 下单享 9 折 <span>↗</span></button><p class="wechat-order" id="wechat-order">微信下单请添加：<b>y12-ii</b></p><small>隐私发货 · 不支持自取 · 满 RM180 包邮 Lalamove</small><small class="return-note">到货即视为使用，不支持退换，请谨慎购买。</small></div>
     </aside>
     <div class="overlay" id="overlay"></div>
     <button class="floating-cart" id="cartButton" data-label="购物袋" aria-label="打开购物袋，0 件商品" title="查看购物袋">
@@ -224,6 +233,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="products.js?v=20260827-top-300"></script>
-    <script src="app.js?v=20260827-delivery-promise"></script>
+    <script src="app.js?v=20260827-support-policy"></script>
   </body>
 </html>
