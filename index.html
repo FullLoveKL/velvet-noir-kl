@@ -40,10 +40,6 @@
         <button class="icon-button" id="searchButton" aria-label="搜索商品" title="搜索商品">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.1 4.1"></path></svg>
         </button>
-        <button class="cart-trigger" id="cartButton" aria-label="打开购物袋">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
-          <span>购物袋</span><b id="cartCount">0</b>
-        </button>
       </div>
     </header>
 
@@ -194,6 +190,11 @@
       <div class="cart-footer"><div class="cart-shipping"><span>✦</span><p>距离 KL 免费配送还差 <b id="shippingGap">RM 180</b></p></div><div class="cart-total"><span>小计</span><b id="cartTotal">RM 0</b></div><div class="cart-discount"><span>WhatsApp / 微信下单 9 折</span><b id="discountedTotal">RM 0.00</b></div><button class="checkout-button" id="checkoutButton">WhatsApp 下单享 9 折 <span>↗</span></button><p class="wechat-order" id="wechat-order">微信下单请添加：<b>y12-ii</b></p><small>无标识包装 · 客服确认库存与配送 · KL 本地配送</small></div>
     </aside>
     <div class="overlay" id="overlay"></div>
+    <button class="floating-cart" id="cartButton" aria-label="打开购物袋，0 件商品" title="查看购物袋">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+      <b id="cartCount" aria-live="polite">0</b>
+      <span class="sr-only">查看购物袋</span>
+    </button>
 
     <section class="age-gate" id="ageGate" aria-modal="true" role="dialog" aria-labelledby="ageTitle">
       <div class="age-card">
@@ -211,7 +212,7 @@
     </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="products.js?v=20260825-orders-images-r2"></script>
-    <script src="app.js?v=20260825-orders-images-r2"></script>
+    <script src="products.js?v=20260826-floating-cart"></script>
+    <script src="app.js?v=20260826-floating-cart"></script>
   </body>
 </html>

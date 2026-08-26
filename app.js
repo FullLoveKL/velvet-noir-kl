@@ -55,6 +55,8 @@ function renderCart() {
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   $("#cartCount").textContent = totalItems;
+  $("#cartButton").setAttribute("aria-label", `打开购物袋，${totalItems} 件商品`);
+  $("#cartButton").classList.toggle("has-items", totalItems > 0);
   $("#cartItemLabel").textContent = `(${totalItems})`;
   $("#cartTotal").textContent = currency(subtotal);
   $("#discountedTotal").textContent = discountCurrency(subtotal * 0.9);
