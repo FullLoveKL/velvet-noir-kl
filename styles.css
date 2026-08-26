@@ -36,11 +36,18 @@ a { color: inherit; text-decoration: none; }
 .header-actions { display: flex; align-items: center; gap: 19px; }
 .icon-button, .close-button { border: 0; padding: 4px; background: transparent; color: var(--ink); }
 .icon-button svg { width: 19px; stroke: currentColor; stroke-width: 1.7; fill: none; stroke-linecap: round; }
+.language-switcher { position: relative; z-index: 35; }
+.language-toggle { min-height: 35px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 20px; padding: 0 10px; background: rgba(247,241,235,.84); color: var(--ink); transition: .2s ease; font: 10px var(--mono); letter-spacing: .04em; }
+.language-toggle:hover, .language-switcher.open .language-toggle { border-color: var(--wine); color: var(--wine); }.language-toggle:focus-visible { outline: 2px solid var(--wine); outline-offset: 2px; }
+.language-toggle svg { width: 16px; fill: none; stroke: currentColor; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
+.language-menu { position: absolute; top: calc(100% + 9px); right: 0; width: 143px; display: grid; padding: 5px; border: 1px solid var(--line); background: #fffaf5; box-shadow: 0 14px 30px rgba(30,14,27,.16); opacity: 0; pointer-events: none; transform: translateY(-4px); transition: .2s ease; }
+.language-switcher.open .language-menu { opacity: 1; pointer-events: auto; transform: none; }
+.language-menu button { border: 0; padding: 9px 10px; background: transparent; color: var(--ink-soft); text-align: left; transition: .16s ease; font: 11px var(--sans); }.language-menu button:hover, .language-menu button.active { background: var(--blush); color: var(--wine); font-weight: 700; }
 .cart-trigger { display: flex; align-items: center; gap: 7px; padding: 8px 0; border: 0; background: transparent; color: var(--ink); font-size: 13px; font-weight: 600; }
 .cart-trigger svg { width: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; }
 .cart-trigger b { width: 19px; height: 19px; display: grid; place-items: center; border-radius: 50%; background: var(--wine); color: white; font: 10px var(--mono); }
 .floating-cart { position: fixed; z-index: 19; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); width: 68px; height: 68px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; background: var(--wine); color: #fff; box-shadow: 0 13px 31px rgba(61,20,46,.34), 0 0 0 7px rgba(108,43,74,.12); transition: transform .22s ease, background .22s ease, box-shadow .22s ease; }
-.floating-cart::after { content: "购物袋"; position: absolute; right: 78px; padding: 7px 9px; border-radius: 2px; background: var(--ink); color: #fff; opacity: 0; pointer-events: none; transform: translateX(7px); transition: .2s ease; font: 9px var(--mono); letter-spacing: .08em; white-space: nowrap; }
+.floating-cart::after { content: attr(data-label); position: absolute; right: 78px; padding: 7px 9px; border-radius: 2px; background: var(--ink); color: #fff; opacity: 0; pointer-events: none; transform: translateX(7px); transition: .2s ease; font: 9px var(--mono); letter-spacing: .08em; white-space: nowrap; }
 .floating-cart:hover, .floating-cart:focus-visible { background: #7d3159; box-shadow: 0 16px 36px rgba(61,20,46,.42), 0 0 0 8px rgba(108,43,74,.14); outline: 0; transform: translateY(-3px); }
 .floating-cart:hover::after, .floating-cart:focus-visible::after { opacity: 1; transform: none; }
 .floating-cart svg { width: 26px; fill: none; stroke: currentColor; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
