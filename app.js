@@ -19,6 +19,8 @@ const copy = {
     cart: "购物袋",
     cartAria: (count) => `打开购物袋，${count} 件商品`,
     cartTitle: "查看购物袋",
+    whatsappSupportAria: "通过 WhatsApp 联系 24h 在线客服",
+    whatsappSupportTitle: "WhatsApp 24h 在线客服",
     shippingGap: (amount) => `距离满 RM180 免 Lalamove 运费还差 <b id="shippingGap">${amount}</b>`,
     shippingDone: "已获得 Lalamove 免运费",
     emptyCart: "你的购物袋还是空的。",
@@ -62,6 +64,8 @@ const copy = {
     cart: "Bag",
     cartAria: (count) => `Open shopping bag, ${count} item${count === 1 ? "" : "s"}`,
     cartTitle: "View shopping bag",
+    whatsappSupportAria: "Contact 24h live support on WhatsApp",
+    whatsappSupportTitle: "WhatsApp 24h live support",
     shippingGap: (amount) => `Spend ${amount} more for free Lalamove delivery`,
     shippingDone: "Free Lalamove delivery unlocked",
     emptyCart: "Your shopping bag is still empty.",
@@ -105,6 +109,8 @@ const copy = {
     cart: "Troli",
     cartAria: (count) => `Buka troli beli-belah, ${count} item`,
     cartTitle: "Lihat troli beli-belah",
+    whatsappSupportAria: "Hubungi khidmat pelanggan 24 jam melalui WhatsApp",
+    whatsappSupportTitle: "Khidmat pelanggan WhatsApp 24 jam",
     shippingGap: (amount) => `Tambah ${amount} lagi untuk penghantaran Lalamove percuma`,
     shippingDone: "Penghantaran Lalamove percuma telah diperoleh",
     emptyCart: "Troli beli-belah anda masih kosong.",
@@ -211,6 +217,7 @@ const staticText = {
   "小计": { en: "Subtotal", ms: "Jumlah kecil" },
   "WhatsApp / 微信下单 9 折": { en: "WhatsApp / WeChat · 10% off", ms: "WhatsApp / WeChat · Diskaun 10%" },
   "WhatsApp 下单享 9 折": { en: "WhatsApp order · 10% off", ms: "Pesan WhatsApp · Diskaun 10%" },
+  "24h 在线客服": { en: "24h live support", ms: "Khidmat pelanggan 24 jam" },
   "微信下单请添加：": { en: "Add on WeChat to order:", ms: "Tambah WeChat untuk membuat pesanan:" },
   "隐私发货 · 不支持自取 · 满 RM180 包邮 Lalamove": { en: "Discreet dispatch · No self-collection · Free Lalamove delivery from RM180", ms: "Penghantaran sulit · Tiada ambil sendiri · Lalamove percuma untuk pesanan RM180 ke atas" },
   "到货即视为使用，不支持退换，请谨慎购买。": { en: "Delivery is treated as use. Returns and exchanges are not accepted; please purchase carefully.", ms: "Barang yang telah sampai dianggap telah digunakan. Pemulangan atau pertukaran tidak diterima; sila beli dengan teliti." },
@@ -739,6 +746,8 @@ function applyLanguage(language) {
   $("#searchButton").setAttribute("title", languageCopy.searchPlaceholder);
   $("#searchInput").setAttribute("placeholder", languageCopy.searchPlaceholder);
   $("#cartPanel").setAttribute("aria-label", languageCopy.cart);
+  $("#whatsappSupportButton").setAttribute("aria-label", languageCopy.whatsappSupportAria);
+  $("#whatsappSupportButton").setAttribute("title", languageCopy.whatsappSupportTitle);
   $$(".language-menu button").forEach((button) => button.classList.toggle("active", button.dataset.language === language));
   translateStaticText();
   renderSupport();

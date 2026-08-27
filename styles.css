@@ -53,6 +53,10 @@ a { color: inherit; text-decoration: none; }
 .floating-cart svg { width: 26px; fill: none; stroke: currentColor; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
 .floating-cart b { position: absolute; top: -4px; right: -4px; min-width: 23px; height: 23px; display: grid; place-items: center; border: 2px solid var(--paper); border-radius: 50%; padding: 0 4px; background: #fff7f1; color: var(--wine); font: 10px var(--mono); line-height: 1; transition: transform .22s ease; }
 .floating-cart.has-items b { transform: scale(1.12); }
+.floating-whatsapp { position: fixed; z-index: 19; right: max(24px, env(safe-area-inset-right)); bottom: calc(max(24px, env(safe-area-inset-bottom)) + 85px); width: 68px; height: 68px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; background: #20b95c; color: #fff; box-shadow: 0 13px 31px rgba(18,119,59,.28), 0 0 0 7px rgba(32,185,92,.12); transition: transform .22s ease, background .22s ease, box-shadow .22s ease; text-decoration: none; }
+.floating-whatsapp svg { width: 33px; fill: currentColor; }
+.floating-whatsapp span { position: absolute; right: 78px; padding: 7px 9px; border-radius: 2px; background: #176f3a; color: #fff; font: 9px var(--mono); letter-spacing: .06em; line-height: 1.2; white-space: nowrap; }
+.floating-whatsapp:hover, .floating-whatsapp:focus-visible { background: #1aa452; box-shadow: 0 16px 36px rgba(18,119,59,.35), 0 0 0 8px rgba(32,185,92,.15); outline: 0; transform: translateY(-3px); }
 
 .hero { position: relative; min-height: 650px; display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(360px, .96fr); overflow: hidden; border-bottom: 1px solid var(--line); }
 .hero-copy { padding: clamp(70px, 10vw, 152px) max(5.5vw, calc((100vw - 1280px) / 2)) 78px; max-width: 760px; }
@@ -148,6 +152,6 @@ footer { padding: 67px 5.5vw 21px; background: #161217; color: #f7eee8; }.brand-
 
 @media (max-width: 800px) { .support-center { padding: 79px 20px 86px; }.support-heading h2 { font-size: 39px; }.support-grid { margin-top: 42px; }.support-card summary { grid-template-columns: 35px minmax(0, 1fr) 20px; gap: 10px; padding: 22px 0; }.support-card summary b { font-size: 23px; }.support-card-content { padding: 0 0 27px 45px; font-size: 12px; }.support-card-content .policy-lead { font-size: 15px; } }
 
-@media (max-width: 800px) { .floating-cart { right: max(17px, env(safe-area-inset-right)); bottom: max(17px, env(safe-area-inset-bottom)); width: 61px; height: 61px; }.floating-cart svg { width: 23px; }.floating-cart::after { display: none; }.floating-cart b { min-width: 21px; height: 21px; font-size: 9px; } }
+@media (max-width: 800px) { .floating-cart { right: max(17px, env(safe-area-inset-right)); bottom: max(17px, env(safe-area-inset-bottom)); width: 61px; height: 61px; }.floating-cart svg { width: 23px; }.floating-cart::after { display: none; }.floating-cart b { min-width: 21px; height: 21px; font-size: 9px; }.floating-whatsapp { right: max(17px, env(safe-area-inset-right)); bottom: calc(max(17px, env(safe-area-inset-bottom)) + 77px); width: 61px; height: 61px; }.floating-whatsapp svg { width: 29px; }.floating-whatsapp span { right: 70px; font-size: 8px; } }
 
 @media (max-width: 390px) { .topbar p:last-child { display: none; }.product-info h3 { font-size: 15px; }.product-info div { font-size: 10px; }.hero-actions { gap: 18px; }.button { gap: 15px; }.footer-links { grid-template-columns: 1fr 1fr; }.footer-links > div:last-child { margin-top: 12px; }.journal-image p { font-size: 39px; } }
