@@ -7,7 +7,7 @@ const fallbackCatalog = [
 
 const catalogList = Array.isArray(window.fullLoveCatalog) && window.fullLoveCatalog.length ? window.fullLoveCatalog : fallbackCatalog;
 const catalog = Object.fromEntries(catalogList.map((product) => [product.id, product]));
-const state = { cart: [], activeFilter: "all", visibleProducts: 24, language: "zh" };
+const state = { cart: [], activeFilter: "all", priceFilter: "all", visibleProducts: 24, language: "zh" };
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 let toastTimer;
@@ -19,6 +19,19 @@ const copy = {
     cart: "购物袋",
     cartAria: (count) => `打开购物袋，${count} 件商品`,
     cartTitle: "查看购物袋",
+    productConsult: "咨询尺码与库存 ↗",
+    productConsultAria: (name) => `通过 WhatsApp 咨询 ${name} 的尺码与库存`,
+    productConsultMessage: (name, series, price) => `你好 FullLove KL，我想咨询这款商品。\n\n商品：${name}\n系列：${series}\n价格：${price}\n\n请告诉我可选尺码、材质、包含件数与现货情况。`,
+    productConsultOpening: "正在打开 WhatsApp 咨询…",
+    deliveryPlaceholder: "例如：50000",
+    deliveryAria: "输入 5 位 KL 邮编以确认配送",
+    deliveryInvalid: "请输入 5 位邮编，客服会确认是否属于 KL 配送范围。",
+    deliveryMessage: (postcode) => `你好 FullLove KL，我想确认配送。\n\nKL 邮编：${postcode}\n\n请确认是否可配送、最快送达时间、运费与满 RM180 免运资格。`,
+    deliveryOpening: "正在打开 WhatsApp 确认配送…",
+    privateConsultMessage: "你好 FullLove KL，我想咨询商品、尺寸、现货与 KL 配送。请协助我挑选。",
+    privateConsultOpening: "正在打开 24h 私密客服…",
+    feedbackMessage: "你好 FullLove KL，我想提交私密体验反馈。\n\n如方便，我会只提供商品编号与想分享的体验；请不要在公开页面展示任何可识别我的资料。",
+    feedbackOpening: "正在打开私密体验反馈…",
     whatsappSupportAria: "通过 WhatsApp 联系 24h 在线客服",
     whatsappSupportTitle: "WhatsApp 24h 在线客服",
     shippingGap: (amount) => `距离满 RM180 免 Lalamove 运费还差 <b id="shippingGap">${amount}</b>`,
@@ -64,6 +77,19 @@ const copy = {
     cart: "Bag",
     cartAria: (count) => `Open shopping bag, ${count} item${count === 1 ? "" : "s"}`,
     cartTitle: "View shopping bag",
+    productConsult: "Ask about size & stock ↗",
+    productConsultAria: (name) => `Ask about size and stock for ${name} on WhatsApp`,
+    productConsultMessage: (name, series, price) => `Hello FullLove KL, I would like to ask about this item.\n\nItem: ${name}\nSeries: ${series}\nPrice: ${price}\n\nPlease confirm available sizes, material, included pieces and current stock.`,
+    productConsultOpening: "Opening WhatsApp support…",
+    deliveryPlaceholder: "For example: 50000",
+    deliveryAria: "Enter a 5-digit KL postcode to check delivery",
+    deliveryInvalid: "Enter a 5-digit postcode and support will confirm the KL delivery area.",
+    deliveryMessage: (postcode) => `Hello FullLove KL, I would like to check delivery.\n\nKL postcode: ${postcode}\n\nPlease confirm delivery coverage, earliest arrival, fee and free-delivery eligibility from RM180.`,
+    deliveryOpening: "Opening WhatsApp delivery check…",
+    privateConsultMessage: "Hello FullLove KL, I would like private support with product choice, sizing, stock and KL delivery.",
+    privateConsultOpening: "Opening 24h private support…",
+    feedbackMessage: "Hello FullLove KL, I would like to share private experience feedback.\n\nIf helpful, I will share only the product code and my experience. Please do not display any information that identifies me publicly.",
+    feedbackOpening: "Opening private feedback…",
     whatsappSupportAria: "Contact 24h live support on WhatsApp",
     whatsappSupportTitle: "WhatsApp 24h live support",
     shippingGap: (amount) => `Spend ${amount} more for free Lalamove delivery`,
@@ -109,6 +135,19 @@ const copy = {
     cart: "Troli",
     cartAria: (count) => `Buka troli beli-belah, ${count} item`,
     cartTitle: "Lihat troli beli-belah",
+    productConsult: "Tanya saiz & stok ↗",
+    productConsultAria: (name) => `Tanya saiz dan stok ${name} melalui WhatsApp`,
+    productConsultMessage: (name, series, price) => `Hai FullLove KL, saya ingin bertanya tentang item ini.\n\nItem: ${name}\nSiri: ${series}\nHarga: ${price}\n\nSila sahkan saiz tersedia, bahan, item yang disertakan dan stok semasa.`,
+    productConsultOpening: "Membuka sokongan WhatsApp…",
+    deliveryPlaceholder: "Contoh: 50000",
+    deliveryAria: "Masukkan poskod KL 5 digit untuk semak penghantaran",
+    deliveryInvalid: "Masukkan poskod 5 digit dan sokongan akan mengesahkan kawasan penghantaran KL.",
+    deliveryMessage: (postcode) => `Hai FullLove KL, saya ingin menyemak penghantaran.\n\nPoskod KL: ${postcode}\n\nSila sahkan liputan penghantaran, masa tiba paling awal, caj dan kelayakan penghantaran percuma dari RM180.`,
+    deliveryOpening: "Membuka semakan penghantaran WhatsApp…",
+    privateConsultMessage: "Hai FullLove KL, saya ingin bantuan peribadi untuk pilihan produk, saiz, stok dan penghantaran KL.",
+    privateConsultOpening: "Membuka sokongan peribadi 24 jam…",
+    feedbackMessage: "Hai FullLove KL, saya ingin berkongsi maklum balas pengalaman secara peribadi.\n\nJika membantu, saya hanya akan berkongsi kod produk dan pengalaman saya. Sila jangan paparkan maklumat yang boleh mengenal pasti saya secara terbuka.",
+    feedbackOpening: "Membuka maklum balas peribadi…",
     whatsappSupportAria: "Hubungi khidmat pelanggan 24 jam melalui WhatsApp",
     whatsappSupportTitle: "Khidmat pelanggan WhatsApp 24 jam",
     shippingGap: (amount) => `Tambah ${amount} lagi untuk penghantaran Lalamove percuma`,
@@ -179,6 +218,20 @@ const staticText = {
   "95 系列": { en: "95 Series", ms: "Siri 95" },
   "混合系列": { en: "Mixed Series", ms: "Siri campuran" },
   "其他系列": { en: "Other Series", ms: "Siri lain" },
+  "按预算快速选": { en: "Shop by budget", ms: "Pilih ikut bajet" },
+  "全部价格": { en: "All prices", ms: "Semua harga" },
+  "先确认配送，": { en: "Confirm delivery", ms: "Sahkan penghantaran" },
+  "再安心下单。": { en: "then order with ease.", ms: "kemudian pesan dengan yakin." },
+  "输入 KL 邮编，客服会在 WhatsApp 确认可配送范围、最快送达时间与最终运费。邮编不会保存在网站内。": { en: "Enter a KL postcode and support will confirm coverage, the earliest arrival and final delivery fee on WhatsApp. The postcode is not saved by this website.", ms: "Masukkan poskod KL dan sokongan akan mengesahkan liputan, masa tiba paling awal dan caj penghantaran akhir melalui WhatsApp. Poskod tidak disimpan oleh laman ini." },
+  "KL 邮编": { en: "KL postcode", ms: "Poskod KL" },
+  "确认配送": { en: "Check delivery", ms: "Semak penghantaran" },
+  "客服会先确认库存与配送，再在私域完成付款与派送安排。": { en: "Support confirms stock and delivery before arranging payment and dispatch privately.", ms: "Sokongan mengesahkan stok dan penghantaran sebelum mengatur pembayaran dan penghantaran secara peribadi." },
+  "挑选款式": { en: "Choose your style", ms: "Pilih gaya anda" },
+  "加入购物袋，或直接咨询尺码与库存。": { en: "Add to your bag, or ask directly about size and stock.", ms: "Tambah ke troli, atau tanya terus tentang saiz dan stok." },
+  "WhatsApp 确认": { en: "Confirm on WhatsApp", ms: "Sahkan di WhatsApp" },
+  "客服确认现货、配送范围与最终金额。": { en: "Support confirms stock, delivery coverage and the final total.", ms: "Sokongan mengesahkan stok, liputan penghantaran dan jumlah akhir." },
+  "私密安排送达": { en: "Arrange discreet delivery", ms: "Atur penghantaran sulit" },
+  "确认后安排隐私包装与 Lalamove 配送。": { en: "After confirmation, discreet packaging and Lalamove delivery are arranged.", ms: "Selepas pengesahan, pembungkusan sulit dan penghantaran Lalamove diatur." },
   "把平常的夜晚，": { en: "Turn an ordinary night", ms: "Jadikan malam biasa" },
   "变成一场仪式。": { en: "into a ritual.", ms: "sebuah ritual." },
   "从柔软的触感到恰到好处的香气，每一件都为共享的亲密时刻而选。": { en: "From a soft touch to a perfectly judged scent, every piece is chosen for shared moments of intimacy.", ms: "Daripada sentuhan lembut hingga haruman yang sempurna, setiap pilihan dipilih untuk momen intim bersama." },
@@ -201,6 +254,12 @@ const staticText = {
   "电邮地址": { en: "Email address", ms: "Alamat e-mel" },
   "你的电邮地址": { en: "Your email address", ms: "Alamat e-mel anda" },
   "订阅即代表你已年满 18 岁，并同意接收 Velvet Noir 的私享资讯。": { en: "By subscribing, you confirm you are 18+ and agree to receive private Velvet Noir updates.", ms: "Dengan melanggan, anda mengesahkan bahawa anda berumur 18 tahun ke atas dan setuju menerima kemas kini peribadi Velvet Noir." },
+  "从咨询到签收，": { en: "From consultation to receipt,", ms: "Dari konsultasi hingga penerimaan," },
+  "都保持私密。": { en: "keep it private.", ms: "kekal peribadi." },
+  "没有站内付款：先由 24h 客服确认商品、尺寸、配送与金额，再安排私域成交与派送。": { en: "There is no on-site payment: 24h support first confirms the item, sizing, delivery and price, then arranges the private order and dispatch.", ms: "Tiada pembayaran di laman: sokongan 24 jam mengesahkan item, saiz, penghantaran dan harga dahulu, kemudian mengatur pesanan dan penghantaran peribadi." },
+  "24h 私密咨询": { en: "24h private support", ms: "Sokongan peribadi 24 jam" },
+  "私密体验反馈": { en: "Private experience feedback", ms: "Maklum balas pengalaman peribadi" },
+  "网站不会收集或保存你的手机号、地址或订单资料；请只在 WhatsApp 按订单需要提供资料。": { en: "This website does not collect or store your phone number, address or order details; share only what is needed for the order on WhatsApp.", ms: "Laman ini tidak mengumpul atau menyimpan nombor telefon, alamat atau butiran pesanan anda; kongsi hanya yang diperlukan untuk pesanan melalui WhatsApp." },
   "我们相信：值得被好好对待的，从来不只是一段关系，也包括你自己。": { en: "We believe what deserves care is never only a relationship. It is you, too.", ms: "Kami percaya yang layak dilayan dengan baik bukan hanya hubungan, tetapi juga diri anda." },
   "购物": { en: "Shop", ms: "Beli-belah" },
   "配送与包装": { en: "Delivery & packaging", ms: "Penghantaran & pembungkusan" },
@@ -640,8 +699,19 @@ function closeCart() {
   $("#overlay").classList.remove("visible");
 }
 
+function openWhatsAppMessage(message) {
+  window.open(`https://wa.me/601111146868?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+}
+
+function priceMatches(product) {
+  if (state.priceFilter === "under-20") return product.price < 20;
+  if (state.priceFilter === "20-39") return product.price >= 20 && product.price < 40;
+  if (state.priceFilter === "40-plus") return product.price >= 40;
+  return true;
+}
+
 function matchedProducts() {
-  return catalogList.filter((product) => state.activeFilter === "all" || product.category === state.activeFilter);
+  return catalogList.filter((product) => (state.activeFilter === "all" || product.category === state.activeFilter) && priceMatches(product));
 }
 
 function productCard(product) {
@@ -665,6 +735,7 @@ function productCard(product) {
         <p>${escapeHtml(category)}</p>
         <h3>${escapeHtml(name)}</h3>
         <div><span>${escapeHtml(language.productShort(category))}</span><b>${currency(product.price)}</b></div>
+        <div class="product-actions"><button class="product-consult" data-consult-id="${escapeHtml(product.id)}" type="button" aria-label="${escapeHtml(language.productConsultAria(name))}">${escapeHtml(language.productConsult)}</button></div>
       </div>
     </article>`;
 }
@@ -684,6 +755,24 @@ function filterProducts(filter) {
   state.activeFilter = filter;
   state.visibleProducts = 24;
   renderProducts();
+}
+
+function filterByPrice(priceFilter) {
+  state.priceFilter = priceFilter;
+  state.visibleProducts = 24;
+  renderProducts();
+}
+
+function consultProduct(id) {
+  const product = catalog[id];
+  if (!product) return;
+  const language = currentCopy();
+  openWhatsAppMessage(language.productConsultMessage(
+    localizedProductName(product.name),
+    localizedSeries(product.brand),
+    currency(product.price)
+  ));
+  showToast(language.productConsultOpening);
 }
 
 function renderSearch(term = "") {
@@ -748,6 +837,8 @@ function applyLanguage(language) {
   $("#cartPanel").setAttribute("aria-label", languageCopy.cart);
   $("#whatsappSupportButton").setAttribute("aria-label", languageCopy.whatsappSupportAria);
   $("#whatsappSupportButton").setAttribute("title", languageCopy.whatsappSupportTitle);
+  $("#deliveryPostcode").setAttribute("placeholder", languageCopy.deliveryPlaceholder);
+  $("#deliveryPostcode").setAttribute("aria-label", languageCopy.deliveryAria);
   $$(".language-menu button").forEach((button) => button.classList.toggle("active", button.dataset.language === language));
   translateStaticText();
   renderSupport();
@@ -769,6 +860,8 @@ $("#cartButton").addEventListener("click", openCart);
 $("#closeCart").addEventListener("click", closeCart);
 $("#overlay").addEventListener("click", closeCart);
 $("#all-products").addEventListener("click", (event) => {
+  const consult = event.target.closest(".product-consult");
+  if (consult) return consultProduct(consult.dataset.consultId);
   const button = event.target.closest(".quick-add");
   if (button) addToCart(button.dataset.id);
 });
@@ -785,6 +878,15 @@ $$(".category-tabs button").forEach((button) => button.addEventListener("click",
   button.classList.add("active");
   button.setAttribute("aria-selected", "true");
   filterProducts(button.dataset.filter);
+}));
+
+$$(".price-filters button").forEach((button) => button.addEventListener("click", () => {
+  $$(".price-filters button").forEach((filter) => {
+    const active = filter === button;
+    filter.classList.toggle("active", active);
+    filter.setAttribute("aria-pressed", String(active));
+  });
+  filterByPrice(button.dataset.priceFilter);
 }));
 
 $("#languageToggle").addEventListener("click", () => {
@@ -809,10 +911,23 @@ $("#searchModal").addEventListener("click", (event) => {
 });
 $("#searchInput").addEventListener("input", (event) => renderSearch(event.target.value));
 
-$("#newsletterForm").addEventListener("submit", (event) => {
+$("#deliveryCheckForm").addEventListener("submit", (event) => {
   event.preventDefault();
-  event.currentTarget.reset();
-  showToast(currentCopy().newsletter);
+  const language = currentCopy();
+  const postcode = $("#deliveryPostcode").value.trim();
+  if (!/^\d{5}$/.test(postcode)) return showToast(language.deliveryInvalid);
+  openWhatsAppMessage(language.deliveryMessage(postcode));
+  showToast(language.deliveryOpening);
+});
+$("#privateConsultButton").addEventListener("click", () => {
+  const language = currentCopy();
+  openWhatsAppMessage(language.privateConsultMessage);
+  showToast(language.privateConsultOpening);
+});
+$("#feedbackButton").addEventListener("click", () => {
+  const language = currentCopy();
+  openWhatsAppMessage(language.feedbackMessage);
+  showToast(language.feedbackOpening);
 });
 $("#checkoutButton").addEventListener("click", () => {
   const language = currentCopy();
@@ -831,7 +946,7 @@ $("#checkoutButton").addEventListener("click", () => {
     "",
     language.confirmation
   ].join("\n");
-  window.open(`https://wa.me/601111146868?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+  openWhatsAppMessage(message);
   showToast(language.checkoutOpening);
 });
 $("#storyButton").addEventListener("click", () => {

@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260827-whatsapp-support" />
+    <link rel="stylesheet" href="styles.css?v=20260827-private-service" />
   </head>
   <body>
     <div class="topbar">
@@ -104,9 +104,37 @@
           <button data-filter="其他系列" role="tab" aria-selected="false">其他系列</button>
         </div>
 
+        <div class="catalog-tools" aria-label="按价格筛选">
+          <p>按预算快速选</p>
+          <div class="price-filters" role="group" aria-label="价格区间">
+            <button class="active" data-price-filter="all" type="button" aria-pressed="true">全部价格</button>
+            <button data-price-filter="under-20" type="button" aria-pressed="false">RM 10–19</button>
+            <button data-price-filter="20-39" type="button" aria-pressed="false">RM 20–39</button>
+            <button data-price-filter="40-plus" type="button" aria-pressed="false">RM 40+</button>
+          </div>
+        </div>
+
         <p class="catalog-status" id="catalogStatus" aria-live="polite">正在载入可售款式…</p>
         <div class="product-grid" id="all-products"></div>
         <div class="catalog-more" id="catalogMore"><button class="button button-primary" id="loadMoreButton">加载更多款式 <span>↓</span></button></div>
+      </section>
+
+      <section class="delivery-check" id="deliveryCheck" aria-labelledby="deliveryCheckTitle">
+        <div>
+          <p class="eyebrow"><span></span> KL DELIVERY CHECK</p>
+          <h2 id="deliveryCheckTitle">先确认配送，<br /><i>再安心下单。</i></h2>
+          <p>输入 KL 邮编，客服会在 WhatsApp 确认可配送范围、最快送达时间与最终运费。邮编不会保存在网站内。</p>
+        </div>
+        <form id="deliveryCheckForm" novalidate>
+          <label for="deliveryPostcode">KL 邮编</label>
+          <div><input id="deliveryPostcode" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="例如：50000" /><button class="button button-primary" type="submit">确认配送 <span>↗</span></button></div>
+          <small>客服会先确认库存与配送，再在私域完成付款与派送安排。</small>
+        </form>
+        <div class="order-steps" aria-label="私域下单流程">
+          <article><span>01</span><b>挑选款式</b><p>加入购物袋，或直接咨询尺码与库存。</p></article>
+          <article><span>02</span><b>WhatsApp 确认</b><p>客服确认现货、配送范围与最终金额。</p></article>
+          <article><span>03</span><b>私密安排送达</b><p>确认后安排隐私包装与 Lalamove 配送。</p></article>
+        </div>
       </section>
 
       <section class="feature-banner">
@@ -178,16 +206,15 @@
         <div class="support-grid" id="supportContent"></div>
       </section>
 
-      <section class="newsletter">
-        <p class="eyebrow centered"><span></span> PRIVATE LETTERS <span></span></p>
-        <h2>留一盏灯，给下一次心动。</h2>
-        <p>订阅不定期灵感、私享新品预览与 KL 专属礼遇。</p>
-        <form id="newsletterForm">
-          <label class="sr-only" for="email">电邮地址</label>
-          <input id="email" type="email" placeholder="你的电邮地址" required />
-          <button type="submit" aria-label="订阅">↗</button>
-        </form>
-        <small>订阅即代表你已年满 18 岁，并同意接收 Velvet Noir 的私享资讯。</small>
+      <section class="newsletter private-service" id="privateService">
+        <p class="eyebrow centered"><span></span> PRIVATE SERVICE <span></span></p>
+        <h2>从咨询到签收，<br /><i>都保持私密。</i></h2>
+        <p>没有站内付款：先由 24h 客服确认商品、尺寸、配送与金额，再安排私域成交与派送。</p>
+        <div class="service-actions">
+          <button class="button button-primary" id="privateConsultButton" type="button">24h 私密咨询 <span>↗</span></button>
+          <button class="button service-feedback" id="feedbackButton" type="button">私密体验反馈 <span>↗</span></button>
+        </div>
+        <small>网站不会收集或保存你的手机号、地址或订单资料；请只在 WhatsApp 按订单需要提供资料。</small>
       </section>
     </main>
 
@@ -237,6 +264,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="products.js?v=20260827-top-300"></script>
-    <script src="app.js?v=20260827-whatsapp-support"></script>
+    <script src="app.js?v=20260827-private-service"></script>
   </body>
 </html>
