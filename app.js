@@ -249,7 +249,7 @@ const productTerms = {
 const supportContent = {
   zh: {
     title: "购买前，请先看这里。",
-    intro: "卫生、配送、订单与隐私规则都写在这里；提交订单即表示你已阅读并同意适用条款。",
+    intro: "卫生、配送、订单与使用规则都写在这里；提交订单即表示你已阅读并同意适用条款。",
     updated: "最后更新：2026 年 8 月 27 日",
     sections: [
       {
@@ -352,7 +352,7 @@ const supportContent = {
   },
   en: {
     title: "Please read before you buy.",
-    intro: "Hygiene, delivery, order and privacy rules are set out here. By placing an order, you confirm that you have read and accepted the applicable terms.",
+    intro: "Hygiene, delivery, order and use rules are set out here. By placing an order, you confirm that you have read and accepted the applicable terms.",
     updated: "Last updated: 27 August 2026",
     sections: [
       {
@@ -413,7 +413,7 @@ const supportContent = {
   },
   ms: {
     title: "Sila baca sebelum membeli.",
-    intro: "Peraturan kebersihan, penghantaran, pesanan dan privasi diterangkan di sini. Dengan membuat pesanan, anda mengesahkan bahawa anda telah membaca dan menerima terma yang terpakai.",
+    intro: "Peraturan kebersihan, penghantaran, pesanan dan penggunaan diterangkan di sini. Dengan membuat pesanan, anda mengesahkan bahawa anda telah membaca dan menerima terma yang terpakai.",
     updated: "Kemas kini terakhir: 27 Ogos 2026",
     sections: [
       {
@@ -501,9 +501,10 @@ function renderSupport() {
   if (!support || !$("#supportContent")) return;
   $("#supportTitle").textContent = support.title;
   $("#supportIntro").textContent = support.intro;
-  $("#supportContent").innerHTML = support.sections.map((section) => `
+  const visibleSections = support.sections.filter((section) => !["support-promotions", "support-privacy"].includes(section.id));
+  $("#supportContent").innerHTML = visibleSections.map((section, index) => `
     <details class="support-card" id="${escapeHtml(section.id)}"${section.id === "support-returns" ? " open" : ""}>
-      <summary><span>${escapeHtml(section.number)}</span><b>${escapeHtml(section.title)}</b><i aria-hidden="true">＋</i></summary>
+      <summary><span>${String(index + 1).padStart(2, "0")}</span><b>${escapeHtml(section.title)}</b><i aria-hidden="true">＋</i></summary>
       <div class="support-card-content">
         <p class="policy-lead">${escapeHtml(section.lead)}</p>
         ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
