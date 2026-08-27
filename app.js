@@ -11,6 +11,12 @@ const state = { cart: [], activeFilter: "all", priceFilter: "all", visibleProduc
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 let toastTimer;
+const DELIVERY_ORIGIN = "Bloomsvale Shopping Gallery, 137 Jalan Puchong, 58200 Kuala Lumpur, Malaysia";
+const NOMINATIM_SEARCH_URL = "https://nominatim.openstreetmap.org/search";
+const OSRM_ROUTE_URL = "https://router.project-osrm.org/route/v1/driving";
+let originCoordinates;
+let lastGeocodeRequestAt = 0;
+let deliveryEstimateState;
 
 const copy = {
   zh: {
@@ -23,10 +29,15 @@ const copy = {
     productConsultAria: (name) => `通过 WhatsApp 咨询 ${name} 的尺码与库存`,
     productConsultMessage: (name, series, price) => `你好 FullLove KL，我想咨询这款商品。\n\n商品：${name}\n系列：${series}\n价格：${price}\n\n请告诉我可选尺码、材质、包含件数与现货情况。`,
     productConsultOpening: "正在打开 WhatsApp 咨询…",
-    deliveryPlaceholder: "例如：50000",
-    deliveryAria: "输入 5 位 KL 邮编以确认配送",
-    deliveryInvalid: "请输入 5 位邮编，客服会确认是否属于 KL 配送范围。",
-    deliveryMessage: (postcode) => `你好 FullLove KL，我想确认配送。\n\nKL 邮编：${postcode}\n\n请确认是否可配送、最快送达时间、运费与满 RM180 免运资格。`,
+    deliveryPlaceholder: "例如：Taman OUG, 58200 Kuala Lumpur",
+    deliveryAria: "输入目的地地址以估算摩托配送时间",
+    deliveryInvalid: "请输入至少 6 个字符的目的地地址。",
+    deliverySearching: "正在计算道路距离与预计时间…",
+    deliveryNoResult: "找不到这个地址。请补充街道、地区或邮编后重试。",
+    deliveryError: "暂时无法完成路线估算，请稍后再试或联系 24h 客服。",
+    deliveryResult: (minutesLow, minutesHigh) => `预计 ${minutesLow}–${minutesHigh} 分钟`,
+    deliveryDistance: (distance) => `道路距离约 ${distance} km · 摩托配送估算`,
+    deliveryMessage: (destination, distance, estimate) => `你好 FullLove KL，我想确认配送。\n\n目的地：${destination}\n网站估算：${distance} km，${estimate}\n\n请确认是否可配送、最快送达时间、运费与满 RM180 免运资格。`,
     deliveryOpening: "正在打开 WhatsApp 确认配送…",
     privateConsultMessage: "你好 FullLove KL，我想咨询商品、尺寸、现货与 KL 配送。请协助我挑选。",
     privateConsultOpening: "正在打开 24h 私密客服…",
@@ -81,10 +92,15 @@ const copy = {
     productConsultAria: (name) => `Ask about size and stock for ${name} on WhatsApp`,
     productConsultMessage: (name, series, price) => `Hello FullLove KL, I would like to ask about this item.\n\nItem: ${name}\nSeries: ${series}\nPrice: ${price}\n\nPlease confirm available sizes, material, included pieces and current stock.`,
     productConsultOpening: "Opening WhatsApp support…",
-    deliveryPlaceholder: "For example: 50000",
-    deliveryAria: "Enter a 5-digit KL postcode to check delivery",
-    deliveryInvalid: "Enter a 5-digit postcode and support will confirm the KL delivery area.",
-    deliveryMessage: (postcode) => `Hello FullLove KL, I would like to check delivery.\n\nKL postcode: ${postcode}\n\nPlease confirm delivery coverage, earliest arrival, fee and free-delivery eligibility from RM180.`,
+    deliveryPlaceholder: "For example: Taman OUG, 58200 Kuala Lumpur",
+    deliveryAria: "Enter a destination address to estimate motorcycle delivery time",
+    deliveryInvalid: "Enter a destination address with at least 6 characters.",
+    deliverySearching: "Calculating road distance and estimated time…",
+    deliveryNoResult: "We could not find that address. Add a street, area or postcode and try again.",
+    deliveryError: "The route estimate is temporarily unavailable. Please try again or contact 24h support.",
+    deliveryResult: (minutesLow, minutesHigh) => `Estimated ${minutesLow}–${minutesHigh} min`,
+    deliveryDistance: (distance) => `About ${distance} km by road · Motorcycle estimate`,
+    deliveryMessage: (destination, distance, estimate) => `Hello FullLove KL, I would like to confirm delivery.\n\nDestination: ${destination}\nWebsite estimate: ${distance} km, ${estimate}\n\nPlease confirm coverage, earliest arrival, fee and free-delivery eligibility from RM180.`,
     deliveryOpening: "Opening WhatsApp delivery check…",
     privateConsultMessage: "Hello FullLove KL, I would like private support with product choice, sizing, stock and KL delivery.",
     privateConsultOpening: "Opening 24h private support…",
@@ -139,10 +155,15 @@ const copy = {
     productConsultAria: (name) => `Tanya saiz dan stok ${name} melalui WhatsApp`,
     productConsultMessage: (name, series, price) => `Hai FullLove KL, saya ingin bertanya tentang item ini.\n\nItem: ${name}\nSiri: ${series}\nHarga: ${price}\n\nSila sahkan saiz tersedia, bahan, item yang disertakan dan stok semasa.`,
     productConsultOpening: "Membuka sokongan WhatsApp…",
-    deliveryPlaceholder: "Contoh: 50000",
-    deliveryAria: "Masukkan poskod KL 5 digit untuk semak penghantaran",
-    deliveryInvalid: "Masukkan poskod 5 digit dan sokongan akan mengesahkan kawasan penghantaran KL.",
-    deliveryMessage: (postcode) => `Hai FullLove KL, saya ingin menyemak penghantaran.\n\nPoskod KL: ${postcode}\n\nSila sahkan liputan penghantaran, masa tiba paling awal, caj dan kelayakan penghantaran percuma dari RM180.`,
+    deliveryPlaceholder: "Contoh: Taman OUG, 58200 Kuala Lumpur",
+    deliveryAria: "Masukkan alamat destinasi untuk anggaran masa penghantaran motosikal",
+    deliveryInvalid: "Masukkan alamat destinasi sekurang-kurangnya 6 aksara.",
+    deliverySearching: "Mengira jarak jalan dan masa anggaran…",
+    deliveryNoResult: "Alamat ini tidak ditemui. Tambah jalan, kawasan atau poskod dan cuba lagi.",
+    deliveryError: "Anggaran laluan buat sementara tidak tersedia. Cuba lagi atau hubungi sokongan 24 jam.",
+    deliveryResult: (minutesLow, minutesHigh) => `Anggaran ${minutesLow}–${minutesHigh} min`,
+    deliveryDistance: (distance) => `Kira-kira ${distance} km melalui jalan · Anggaran motosikal`,
+    deliveryMessage: (destination, distance, estimate) => `Hai FullLove KL, saya ingin mengesahkan penghantaran.\n\nDestinasi: ${destination}\nAnggaran laman: ${distance} km, ${estimate}\n\nSila sahkan liputan, masa tiba paling awal, caj dan kelayakan penghantaran percuma dari RM180.`,
     deliveryOpening: "Membuka semakan penghantaran WhatsApp…",
     privateConsultMessage: "Hai FullLove KL, saya ingin bantuan peribadi untuk pilihan produk, saiz, stok dan penghantaran KL.",
     privateConsultOpening: "Membuka sokongan peribadi 24 jam…",
@@ -222,9 +243,14 @@ const staticText = {
   "全部价格": { en: "All prices", ms: "Semua harga" },
   "先确认配送，": { en: "Confirm delivery", ms: "Sahkan penghantaran" },
   "再安心下单。": { en: "then order with ease.", ms: "kemudian pesan dengan yakin." },
-  "输入 KL 邮编，客服会在 WhatsApp 确认可配送范围、最快送达时间与最终运费。邮编不会保存在网站内。": { en: "Enter a KL postcode and support will confirm coverage, the earliest arrival and final delivery fee on WhatsApp. The postcode is not saved by this website.", ms: "Masukkan poskod KL dan sokongan akan mengesahkan liputan, masa tiba paling awal dan caj penghantaran akhir melalui WhatsApp. Poskod tidak disimpan oleh laman ini." },
-  "KL 邮编": { en: "KL postcode", ms: "Poskod KL" },
-  "确认配送": { en: "Check delivery", ms: "Semak penghantaran" },
+  "输入目的地地址，即可查看从 Bloomsvale Shopping Gallery 出发的道路距离与摩托配送预计时间。估算不使用实时交通，最终以客服确认和骑手实际路线为准。": { en: "Enter a destination address to see road distance and an estimated motorcycle-delivery time from Bloomsvale Shopping Gallery. This estimate does not use live traffic; support and the rider's actual route remain final.", ms: "Masukkan alamat destinasi untuk melihat jarak jalan dan anggaran masa penghantaran motosikal dari Bloomsvale Shopping Gallery. Anggaran ini tidak menggunakan trafik langsung; pengesahan sokongan dan laluan sebenar penunggang adalah muktamad." },
+  "目的地地址": { en: "Destination address", ms: "Alamat destinasi" },
+  "计算距离与预计时间": { en: "Calculate distance & estimated time", ms: "Kira jarak & masa anggaran" },
+  "地址只用于本次路线估算，会发送至路线服务计算，网站不会保存。估算后可一键发送给客服确认实际配送。": { en: "The address is used only for this route estimate and is sent to a routing service to calculate it; this website does not save it. You can send the estimate to support for confirmation.", ms: "Alamat hanya digunakan untuk anggaran laluan ini dan dihantar kepada perkhidmatan laluan untuk pengiraan; laman ini tidak menyimpannya. Anda boleh menghantar anggaran kepada sokongan untuk pengesahan." },
+  "从 Bloomsvale Shopping Gallery 出发": { en: "From Bloomsvale Shopping Gallery", ms: "Dari Bloomsvale Shopping Gallery" },
+  "路线估算不使用实时交通；实际送达时间会受骑手接单、天气和道路情况影响。": { en: "This route estimate does not use live traffic. Actual arrival depends on rider matching, weather and road conditions.", ms: "Anggaran laluan ini tidak menggunakan trafik langsung. Masa tiba sebenar bergantung pada padanan penunggang, cuaca dan keadaan jalan." },
+  "把估算发送给客服确认": { en: "Send estimate to support", ms: "Hantar anggaran kepada sokongan" },
+  "路线资料 © OpenStreetMap contributors": { en: "Route data © OpenStreetMap contributors", ms: "Data laluan © penyumbang OpenStreetMap" },
   "客服会先确认库存与配送，再在私域完成付款与派送安排。": { en: "Support confirms stock and delivery before arranging payment and dispatch privately.", ms: "Sokongan mengesahkan stok dan penghantaran sebelum mengatur pembayaran dan penghantaran secara peribadi." },
   "挑选款式": { en: "Choose your style", ms: "Pilih gaya anda" },
   "加入购物袋，或直接咨询尺码与库存。": { en: "Add to your bag, or ask directly about size and stock.", ms: "Tambah ke troli, atau tanya terus tentang saiz dan stok." },
@@ -703,6 +729,60 @@ function openWhatsAppMessage(message) {
   window.open(`https://wa.me/601111146868?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
 }
 
+const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+
+async function geocodeAddress(address) {
+  const delay = Math.max(0, 1100 - (Date.now() - lastGeocodeRequestAt));
+  if (delay) await wait(delay);
+  lastGeocodeRequestAt = Date.now();
+  const query = /malaysia/i.test(address) ? address : `${address}, Malaysia`;
+  const url = new URL(NOMINATIM_SEARCH_URL);
+  url.search = new URLSearchParams({ format: "jsonv2", limit: "1", countrycodes: "my", q: query }).toString();
+  const response = await fetch(url, { headers: { "Accept-Language": document.documentElement.lang || "en" } });
+  if (!response.ok) throw new Error("geocoding request failed");
+  const results = await response.json();
+  const result = Array.isArray(results) ? results[0] : null;
+  if (!result || !Number.isFinite(Number(result.lat)) || !Number.isFinite(Number(result.lon))) return null;
+  return { lat: Number(result.lat), lon: Number(result.lon), label: result.display_name || address };
+}
+
+async function getOriginCoordinates() {
+  if (originCoordinates) return originCoordinates;
+  originCoordinates = await geocodeAddress(DELIVERY_ORIGIN);
+  if (!originCoordinates) throw new Error("origin not found");
+  return originCoordinates;
+}
+
+async function getRoadRoute(origin, destination) {
+  const url = `${OSRM_ROUTE_URL}/${origin.lon},${origin.lat};${destination.lon},${destination.lat}?overview=false&alternatives=false&steps=false`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("route request failed");
+  const route = (await response.json())?.routes?.[0];
+  if (!route || !Number.isFinite(route.distance) || !Number.isFinite(route.duration)) throw new Error("route unavailable");
+  return route;
+}
+
+function setDeliveryStatus(message) {
+  $("#deliveryEstimate").hidden = false;
+  $("#deliveryEstimateTime").textContent = message;
+  $("#deliveryEstimateDistance").textContent = "";
+  $("#deliveryConfirmButton").hidden = true;
+}
+
+function displayDeliveryEstimate(destination, route) {
+  const language = currentCopy();
+  const distance = Math.max(0.1, Math.round(route.distance / 100) / 10);
+  const roadMinutes = Math.max(1, Math.ceil(route.duration / 60));
+  const minutesLow = Math.max(20, roadMinutes + 10);
+  const minutesHigh = minutesLow + 15;
+  const estimate = language.deliveryResult(minutesLow, minutesHigh);
+  $("#deliveryEstimate").hidden = false;
+  $("#deliveryEstimateTime").textContent = estimate;
+  $("#deliveryEstimateDistance").textContent = language.deliveryDistance(distance);
+  $("#deliveryConfirmButton").hidden = false;
+  deliveryEstimateState = { destination, distance, estimate };
+}
+
 function priceMatches(product) {
   if (state.priceFilter === "under-20") return product.price < 20;
   if (state.priceFilter === "20-39") return product.price >= 20 && product.price < 40;
@@ -837,8 +917,8 @@ function applyLanguage(language) {
   $("#cartPanel").setAttribute("aria-label", languageCopy.cart);
   $("#whatsappSupportButton").setAttribute("aria-label", languageCopy.whatsappSupportAria);
   $("#whatsappSupportButton").setAttribute("title", languageCopy.whatsappSupportTitle);
-  $("#deliveryPostcode").setAttribute("placeholder", languageCopy.deliveryPlaceholder);
-  $("#deliveryPostcode").setAttribute("aria-label", languageCopy.deliveryAria);
+  $("#deliveryDestination").setAttribute("placeholder", languageCopy.deliveryPlaceholder);
+  $("#deliveryDestination").setAttribute("aria-label", languageCopy.deliveryAria);
   $$(".language-menu button").forEach((button) => button.classList.toggle("active", button.dataset.language === language));
   translateStaticText();
   renderSupport();
@@ -911,12 +991,35 @@ $("#searchModal").addEventListener("click", (event) => {
 });
 $("#searchInput").addEventListener("input", (event) => renderSearch(event.target.value));
 
-$("#deliveryCheckForm").addEventListener("submit", (event) => {
+$("#deliveryCheckForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   const language = currentCopy();
-  const postcode = $("#deliveryPostcode").value.trim();
-  if (!/^\d{5}$/.test(postcode)) return showToast(language.deliveryInvalid);
-  openWhatsAppMessage(language.deliveryMessage(postcode));
+  const destination = $("#deliveryDestination").value.trim();
+  if (destination.length < 6) return showToast(language.deliveryInvalid);
+  deliveryEstimateState = undefined;
+  setDeliveryStatus(language.deliverySearching);
+  try {
+    const origin = await getOriginCoordinates();
+    const destinationCoordinates = await geocodeAddress(destination);
+    if (!destinationCoordinates) {
+      setDeliveryStatus(language.deliveryNoResult);
+      return;
+    }
+    const route = await getRoadRoute(origin, destinationCoordinates);
+    displayDeliveryEstimate(destinationCoordinates.label || destination, route);
+  } catch {
+    setDeliveryStatus(language.deliveryError);
+    showToast(language.deliveryError);
+  }
+});
+$("#deliveryConfirmButton").addEventListener("click", () => {
+  if (!deliveryEstimateState) return;
+  const language = currentCopy();
+  openWhatsAppMessage(language.deliveryMessage(
+    deliveryEstimateState.destination,
+    deliveryEstimateState.distance,
+    deliveryEstimateState.estimate
+  ));
   showToast(language.deliveryOpening);
 });
 $("#privateConsultButton").addEventListener("click", () => {

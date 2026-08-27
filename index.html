@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260827-private-service" />
+    <link rel="stylesheet" href="styles.css?v=20260827-route-estimate" />
   </head>
   <body>
     <div class="topbar">
@@ -123,12 +123,20 @@
         <div>
           <p class="eyebrow"><span></span> KL DELIVERY CHECK</p>
           <h2 id="deliveryCheckTitle">先确认配送，<br /><i>再安心下单。</i></h2>
-          <p>输入 KL 邮编，客服会在 WhatsApp 确认可配送范围、最快送达时间与最终运费。邮编不会保存在网站内。</p>
+          <p>输入目的地地址，即可查看从 Bloomsvale Shopping Gallery 出发的道路距离与摩托配送预计时间。估算不使用实时交通，最终以客服确认和骑手实际路线为准。</p>
         </div>
         <form id="deliveryCheckForm" novalidate>
-          <label for="deliveryPostcode">KL 邮编</label>
-          <div><input id="deliveryPostcode" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="例如：50000" /><button class="button button-primary" type="submit">确认配送 <span>↗</span></button></div>
-          <small>客服会先确认库存与配送，再在私域完成付款与派送安排。</small>
+          <label for="deliveryDestination">目的地地址</label>
+          <div><input id="deliveryDestination" autocomplete="street-address" placeholder="例如：Taman OUG, 58200 Kuala Lumpur" /><button class="button button-primary" type="submit">计算距离与预计时间 <span>↗</span></button></div>
+          <small>地址只用于本次路线估算，会发送至路线服务计算，网站不会保存。估算后可一键发送给客服确认实际配送。</small>
+          <div class="delivery-estimate" id="deliveryEstimate" aria-live="polite" hidden>
+            <p>从 Bloomsvale Shopping Gallery 出发</p>
+            <b id="deliveryEstimateTime">—</b>
+            <span id="deliveryEstimateDistance">—</span>
+            <small id="deliveryEstimateNote">路线估算不使用实时交通；实际送达时间会受骑手接单、天气和道路情况影响。</small>
+            <button class="button service-feedback" id="deliveryConfirmButton" type="button">把估算发送给客服确认 <span>↗</span></button>
+          </div>
+          <p class="map-attribution">路线资料 © OpenStreetMap contributors</p>
         </form>
         <div class="order-steps" aria-label="私域下单流程">
           <article><span>01</span><b>挑选款式</b><p>加入购物袋，或直接咨询尺码与库存。</p></article>
@@ -264,6 +272,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="products.js?v=20260827-top-300"></script>
-    <script src="app.js?v=20260827-private-service"></script>
+    <script src="app.js?v=20260827-route-estimate"></script>
   </body>
 </html>
